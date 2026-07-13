@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+.yarn
+.pnp.*
+dist
+build
+.next
+.next_backup_*
+coverage
+*.tsbuildinfo
+.sanity
+.env
+.env.local
+.env.*.local

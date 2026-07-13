@@ -1,0 +1,30 @@
+{
+  "name": "starter-sanity",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "lint": "eslint .",
+    "schema:extract": "sanity schema extract --path ./schema.json",
+    "typegen": "sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/icons": "5.0.0",
+    "@sanity/vision": "6.4.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "sanity": "6.4.0",
+    "sanity-plugin-media": "5.0.11",
+    "sanity-plugin-mux-input": "4.1.7",
+    "styled-components": "6.4.3"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "6.0.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.5",
+    "typescript": "5.9.3"
+  }
+}

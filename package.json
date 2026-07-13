@@ -1,0 +1,30 @@
+{
+  "name": "nextjs-sanity-starter",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.12.0",
+  "workspaces": [
+    "site",
+    "sanity"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter starter-site dev",
+    "dev:site": "pnpm --filter starter-site dev",
+    "dev:sanity": "pnpm --filter starter-sanity dev",
+    "build": "pnpm --filter starter-site build",
+    "build:sanity": "pnpm --filter starter-sanity build",
+    "lint": "pnpm --filter starter-site lint && pnpm --filter starter-sanity lint",
+    "type-check": "pnpm --filter starter-site type-check",
+    "typegen:schema": "pnpm --filter starter-sanity schema:extract",
+    "typegen:generate": "pnpm --filter starter-sanity typegen",
+    "typegen": "pnpm typegen:schema && pnpm typegen:generate",
+    "check:deps": "fallow dead-code --format json --quiet --unused-deps",
+    "check": "pnpm typegen && pnpm lint && pnpm type-check && pnpm build && pnpm build:sanity"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "fallow": "3.3.0"
+  }
+}

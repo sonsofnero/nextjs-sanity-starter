@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Next.js Sanity Starter - Start Here</title>
+    <meta
+      name="description"
+      content="Visual setup checklist for the Next.js + Sanity starter repository."
+    />
+    <link rel="stylesheet" href="./start-here.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Visual Setup Checklist</p>
+          <h1>Start here before turning Forefathers' starter repo into a real project.</h1>
+          <p class="hero-body">
+            This guide explains the repo structure, the setup order, and the first cleanup pass for
+            the extracted starter. Open this file directly in the browser. No app boot required.
+          </p>
+          <div class="hero-pills">
+            <span>Next.js + Sanity Monorepo</span>
+            <span>Repo-first onboarding</span>
+          </div>
+        </div>
+
+        <aside class="command-panel">
+          <p class="panel-label">Fast path</p>
+          <div class="command-card">
+            <p>1. Install</p>
+            <code>pnpm install</code>
+          </div>
+          <div class="command-card">
+            <p>2. Create env files</p>
+            <code>cp site/.env.example site/.env.local</code>
+            <code>cp sanity/.env.example sanity/.env</code>
+          </div>
+          <div class="command-card">
+            <p>3. Start the apps</p>
+            <code>pnpm dev:site</code>
+            <code>pnpm dev:sanity</code>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Repo Map</p>
+          <h2>How the starter is organized</h2>
+          <p>
+            The extracted starter stays intentionally simple: one root workspace, one frontend app,
+            one Sanity Studio, one `start-here` folder for visual onboarding, and a small docs area
+            for repeatable workflow notes.
+          </p>
+        </div>
+
+        <div class="grid two-up">
+          <article class="card">
+            <p class="path-pill">/</p>
+            <h3>Root workspace</h3>
+            <p>
+              Runs the monorepo and keeps install, lint, type-check, and TypeGen commands aligned.
+            </p>
+            <div class="tag-row">
+              <span>`package.json`</span>
+              <span>`pnpm-lock.yaml`</span>
+              <span>`docs/`</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="path-pill">/site</p>
+            <h3>Next.js app</h3>
+            <p>
+              Holds the App Router frontend, shared UI, page-builder rendering, and Sanity data
+              fetching.
+            </p>
+            <div class="tag-row">
+              <span>`app/components`</span>
+              <span>`app/sanity`</span>
+              <span>`app/config`</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="path-pill">/sanity</p>
+            <h3>Sanity Studio</h3>
+            <p>
+              Defines schemas, page-builder modules, shared modules, desk structure, and TypeGen
+              config.
+            </p>
+            <div class="tag-row">
+              <span>`src/schemaTypes`</span>
+              <span>`structure.ts`</span>
+              <span>`sanity.cli.ts`</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="path-pill">/start-here</p>
+            <h3>Visual onboarding</h3>
+            <p>
+              Gives the repo a lightweight setup artifact that can be opened directly in the browser
+              before the project is installed or running.
+            </p>
+            <div class="tag-row">
+              <span>`index.html`</span>
+              <span>`start-here.css`</span>
+              <span>`docs/`</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Setup Checklist</p>
+          <h2>What to do first</h2>
+          <p>
+            Follow these in order. The goal is to get the starter running quickly, then neutralize
+            the copied details before deeper project work begins.
+          </p>
+        </div>
+
+        <div class="checklist">
+          <article class="step-card">
+            <div class="step-index">01</div>
+            <div class="step-copy">
+              <h3>Install dependencies</h3>
+              <p>Install from the repo root so both workspaces use the same lockfile.</p>
+              <code>pnpm install</code>
+              <ul>
+                <li>Run this once after moving the starter into its own folder.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-index">02</div>
+            <div class="step-copy">
+              <h3>Create local env files</h3>
+              <p>Copy the example env files and replace the placeholders with the new project values.</p>
+              <code>cp site/.env.example site/.env.local &amp;&amp; cp sanity/.env.example sanity/.env</code>
+              <ul>
+                <li>Set the Sanity project ID, dataset, preview URL, read token, and revalidation secret.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-index">03</div>
+            <div class="step-copy">
+              <h3>Rename the project details</h3>
+              <p>Update the generic starter metadata before you begin modeling the new site.</p>
+              <code>site/app/layout.tsx  ·  sanity/sanity.config.ts  ·  logo assets</code>
+              <ul>
+                <li>Replace copied titles, descriptions, SVGs, and brand language.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-index">04</div>
+            <div class="step-copy">
+              <h3>Start both apps</h3>
+              <p>Run the frontend and Studio together while you verify the copied foundation.</p>
+              <code>pnpm dev:site  ·  pnpm dev:sanity</code>
+              <ul>
+                <li>Frontend defaults to `http://localhost:3000` and Studio to `http://localhost:3333`.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-index">05</div>
+            <div class="step-copy">
+              <h3>Refresh generated types</h3>
+              <p>Whenever schemas or GROQ queries change, regenerate types immediately.</p>
+              <code>pnpm typegen &amp;&amp; pnpm type-check</code>
+              <ul>
+                <li>This is the main guardrail against slice contract drift.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">First Cleanup Pass</p>
+            <h2>What still needs attention</h2>
+            <p>
+              Because this starter began as a real project extraction, these are the items worth
+              cleaning up before you treat it as the canonical boilerplate.
+            </p>
+          </div>
+
+          <div class="task-stack">
+            <div class="task-card"><span>1</span><p>Keep future domain packs optional and outside the default content model so the base starter stays broadly reusable.</p></div>
+            <div class="task-card"><span>2</span><p>Replace project-specific copy, metadata, and logo assets that were intentionally carried over in the first pass.</p></div>
+            <div class="task-card"><span>3</span><p>Audit the seeded slices and remove anything that should not live in the long-term canonical starter.</p></div>
+            <div class="task-card"><span>4</span><p>Confirm Studio desk structure, singleton handling, and default documents still fit the next project.</p></div>
+            <div class="task-card"><span>5</span><p>Run a final `pnpm check` and smoke test after cleanup.</p></div>
+          </div>
+        </div>
+
+        <aside class="guardrail-card">
+          <p class="panel-label">Guardrail</p>
+          <h3>Keep schema, query, and component changes in lockstep.</h3>
+          <p>
+            Most drift in this stack happens when one part of the slice contract changes without the
+            other two. Keep the workflow explicit every time you touch a slice.
+          </p>
+          <div class="flow-chip">schema → query → component → registry → typegen</div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Reference Paths</p>
+          <h2>Useful files to open next</h2>
+          <p>These are the fastest handoff points once the starter is installed and the env is in place.</p>
+        </div>
+
+        <div class="grid three-up">
+          <article class="card">
+            <h3>Slice workflow</h3>
+            <p>Create the schema, add the GROQ fragment, build the React component, then wire both registries.</p>
+            <p class="file-ref">docs/how-to-add-a-slice.md</p>
+          </article>
+
+          <article class="card">
+            <h3>TypeGen workflow</h3>
+            <p>Schema or query changed? Run TypeGen right away, then normalize nullable data at the boundary.</p>
+            <p class="file-ref">docs/how-to-run-typegen.md</p>
+          </article>
+
+          <article class="card">
+            <h3>Design reference</h3>
+            <p>Keep the styleguide route in the starter so tokens and shared UI stay visible while building.</p>
+            <p class="file-ref">site/app/styleguide/page.tsx</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

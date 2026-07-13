@@ -1,0 +1,39 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "dependencyDashboard": true,
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "Automerge stable patch updates after CI",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "groupName": "Next.js and React",
+      "matchPackageNames": ["next", "react", "react-dom", "eslint-config-next"]
+    },
+    {
+      "groupName": "Sanity",
+      "matchPackageNames": ["sanity", "next-sanity", "@sanity/**", "sanity-plugin-**"]
+    },
+    {
+      "groupName": "GSAP",
+      "matchPackageNames": ["gsap", "@gsap/react"]
+    },
+    {
+      "groupName": "Tailwind CSS",
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/postcss"]
+    },
+    {
+      "groupName": "TypeScript and ESLint",
+      "matchPackageNames": ["typescript", "eslint", "@types/**", "@sanity/eslint-config-studio"]
+    },
+    {
+      "groupName": "Portable Text",
+      "matchPackageNames": ["@portabletext/**"]
+    }
+  ],
+  "schedule": ["before 6am on monday"]
+}
