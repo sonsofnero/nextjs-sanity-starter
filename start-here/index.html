@@ -15,10 +15,10 @@
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Visual Setup Checklist</p>
-          <h1>Start here before turning Forefathers' starter repo into a real project.</h1>
+          <h1>Start here before turning this starter repo into a real project.</h1>
           <p class="hero-body">
-            This guide explains the repo structure, the setup order, and the first cleanup pass for
-            the extracted starter. Open this file directly in the browser. No app boot required.
+            This guide explains the repo structure, the setup order, and the reusable toolkit for
+            the starter. Open this file directly in the browser. No app boot required.
           </p>
           <div class="hero-pills">
             <span>Next.js + Sanity Monorepo</span>
@@ -74,13 +74,12 @@
             <p class="path-pill">/site</p>
             <h3>Next.js app</h3>
             <p>
-              Holds the App Router frontend, shared UI, page-builder rendering, and Sanity data
-              fetching.
+              Keeps routes in app, shared UI in components, and data fetching in sanity. The @/* alias resolves from site/.
             </p>
             <div class="tag-row">
-              <span>`app/components`</span>
-              <span>`app/sanity`</span>
-              <span>`app/config`</span>
+              <span>`components`</span>
+              <span>`sanity`</span>
+              <span>`styles/foundations.css`</span>
             </div>
           </article>
 
@@ -88,7 +87,7 @@
             <p class="path-pill">/sanity</p>
             <h3>Sanity Studio</h3>
             <p>
-              Defines schemas, page-builder modules, shared modules, desk structure, and TypeGen
+              Defines schemas, the example page-builder module, desk structure, and TypeGen
               config.
             </p>
             <div class="tag-row">
@@ -119,8 +118,8 @@
           <p class="eyebrow">Setup Checklist</p>
           <h2>What to do first</h2>
           <p>
-            Follow these in order. The goal is to get the starter running quickly, then neutralize
-            the copied details before deeper project work begins.
+            Follow these in order. The goal is to get the starter running quickly, then customize
+            its foundations before deeper project work begins.
           </p>
         </div>
 
@@ -154,9 +153,9 @@
             <div class="step-copy">
               <h3>Rename the project details</h3>
               <p>Update the generic starter metadata before you begin modeling the new site.</p>
-              <code>site/app/layout.tsx  ·  sanity/sanity.config.ts  ·  logo assets</code>
+              <code>site/app/layout.tsx  ·  sanity/sanity.config.ts  ·  site/styles/foundations.css</code>
               <ul>
-                <li>Replace copied titles, descriptions, SVGs, and brand language.</li>
+                <li>Set project titles and descriptions, then customize CSS theme tokens and typography.</li>
               </ul>
             </div>
           </article>
@@ -190,20 +189,20 @@
       <section class="section split-section">
         <div>
           <div class="section-heading">
-            <p class="eyebrow">First Cleanup Pass</p>
-            <h2>What still needs attention</h2>
+            <p class="eyebrow">Project Foundations</p>
+            <h2>What to customize next</h2>
             <p>
-              Because this starter began as a real project extraction, these are the items worth
-              cleaning up before you treat it as the canonical boilerplate.
+              The baseline includes one typed slice and a reusable toolkit. Use these starting points
+              to adapt it to the next project.
             </p>
           </div>
 
           <div class="task-stack">
             <div class="task-card"><span>1</span><p>Keep future domain packs optional and outside the default content model so the base starter stays broadly reusable.</p></div>
-            <div class="task-card"><span>2</span><p>Replace project-specific copy, metadata, and logo assets that were intentionally carried over in the first pass.</p></div>
-            <div class="task-card"><span>3</span><p>Audit the seeded slices and remove anything that should not live in the long-term canonical starter.</p></div>
+            <div class="task-card"><span>2</span><p>Customize site/styles/foundations.css for project fonts, colors, typography, and spacing.</p></div>
+            <div class="task-card"><span>3</span><p>Copy the example slice contract and import named toolkit components directly from site/components. Unused toolkit entrypoints are intentional.</p></div>
             <div class="task-card"><span>4</span><p>Confirm Studio desk structure, singleton handling, and default documents still fit the next project.</p></div>
-            <div class="task-card"><span>5</span><p>Run a final `pnpm check` and smoke test after cleanup.</p></div>
+            <div class="task-card"><span>5</span><p>Run pnpm test, pnpm test:browser, and pnpm check before handoff. Review analysis findings before deleting reusable code.</p></div>
           </div>
         </div>
 
@@ -214,7 +213,7 @@
             Most drift in this stack happens when one part of the slice contract changes without the
             other two. Keep the workflow explicit every time you touch a slice.
           </p>
-          <div class="flow-chip">schema → query → component → registry → typegen</div>
+          <div class="flow-chip">schema → query → typegen → component → registry</div>
         </aside>
       </section>
 
@@ -239,9 +238,9 @@
           </article>
 
           <article class="card">
-            <h3>Design reference</h3>
-            <p>Keep the styleguide route in the starter so tokens and shared UI stay visible while building.</p>
-            <p class="file-ref">site/app/styleguide/page.tsx</p>
+            <h3>Component toolkit</h3>
+            <p>Copy examples for CSS foundations, buttons, media, Portable Text, native accordions, and controlled modals.</p>
+            <p class="file-ref">docs/component-toolkit.md</p>
           </article>
         </div>
       </section>

@@ -1,7 +1,7 @@
-import EmptyPageState from '@/components/starter/emptyPageState'
-import PageBuilder from '@/components/slices/pageBuilder'
+import {EmptyPageState} from '@/components/starter/emptyPageState'
+import {PageBuilder} from '@/components/slices/pageBuilder'
 import {sanityFetch} from '@/sanity/live'
-import {HOME_PAGE_QUERY} from '@/sanity/queries/pages'
+import {HOME_PAGE_QUERY} from '@/sanity/queries/pages/home'
 
 export const revalidate = 60
 

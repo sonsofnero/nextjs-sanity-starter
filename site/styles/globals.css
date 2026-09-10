@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+@import './foundations.css';
+@source "../components";
+@source "../app";
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    text-rendering: optimizeLegibility;
+  }
+  a {
+    color: inherit;
+  }
+}

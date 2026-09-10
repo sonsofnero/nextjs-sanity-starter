@@ -20,12 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./app/components/*"],
-      "@/config/*": ["./app/config/*"],
-      "@/hooks/*": ["./app/hooks/*"],
-      "@/utils/*": ["./app/utils/*"],
-      "@/sanity/*": ["./app/sanity/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [

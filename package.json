@@ -19,7 +19,9 @@
     "typegen:generate": "pnpm --filter starter-sanity typegen",
     "typegen": "pnpm typegen:schema && pnpm typegen:generate",
     "check:deps": "fallow dead-code --format json --quiet --unused-deps",
-    "check": "pnpm typegen && pnpm lint && pnpm type-check && pnpm build && pnpm build:sanity"
+    "check": "pnpm typegen && pnpm test && pnpm lint && pnpm type-check && pnpm build && pnpm build:sanity",
+    "test": "pnpm --filter starter-site test",
+    "test:browser": "pnpm --filter starter-site test:browser"
   },
   "engines": {
     "node": ">=24"
