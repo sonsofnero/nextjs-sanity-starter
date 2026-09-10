@@ -64,7 +64,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 - [ ] Build your first slice using [the slice checklist](how-to-add-a-slice.md).
 - [ ] Run `pnpm check`.
 - [ ] Install the browser once with `pnpm --filter starter-site exec playwright install chromium`, then run `pnpm test:browser`.
-- [ ] Commit and push the project, including the lockfile and generated Sanity types.
+- [ ] Commit and push the project, including the lockfile and generated Sanity types. GitHub Actions runs tests, lint, and TypeScript; no Sanity secrets or variables are needed in GitHub.
 
 ## 6. Deploy Studio to Sanity
 
