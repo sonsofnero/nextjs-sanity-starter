@@ -1,0 +1,20 @@
+{
+  "entry": [
+    "site/components/ui/button.tsx",
+    "site/components/ui/buttonLink.tsx",
+    "site/components/ui/container.tsx",
+    "site/components/ui/categoryPill.tsx",
+    "site/components/ui/accordion/accordion.tsx",
+    "site/components/ui/modal/modal.tsx",
+    "site/components/media/sanityImage.tsx",
+    "site/components/media/video.tsx",
+    "site/components/portableText/portableTextRenderer.tsx",
+    "site/components/portableText/portableTextComponents.tsx",
+    "site/components/animation/scrollReveal.tsx",
+    "site/sanity/images.ts",
+    "site/sanity/links.ts",
+    "site/sanity/visualEditing.ts",
+    "start-here/start-here.css"
+  ],
+  "ignorePatterns": ["site/sanity/sanity.types.ts"]
+}

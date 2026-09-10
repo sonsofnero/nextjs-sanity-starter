@@ -1,44 +1,48 @@
 # nextjs-sanity-starter
 
-Minimal Next.js + Sanity starter for spinning up a new project with a page-builder baseline.
-
-The starter uses Next.js 16, Sanity 6, pnpm workspaces, and GSAP. Framer Motion is intentionally not included.
-
-## Apps
-
-- `site`: Next.js frontend with a neutral layout, Sanity wiring, and one example slice.
-- `sanity`: Sanity Studio with `homePage`, `page`, and the matching page-builder schema.
+A neutral Next.js + Sanity starter with a typed page builder and a reusable component toolkit. It uses Next.js 16, Sanity 6, Tailwind CSS 4, GSAP, and pnpm workspaces.
 
 ## Getting started
 
 1. Install Node 24 and pnpm 11.12.0. With Corepack available, run `corepack enable`.
 2. Run `pnpm install` from the project root.
-3. Copy `site/.env.example` to `site/.env.local`.
-4. Copy `sanity/.env.example` to `sanity/.env`.
-5. Update the copied env values, site metadata, and Sanity project configuration for the new project.
-6. Start the apps with `pnpm dev:site` and `pnpm dev:sanity`.
+3. Copy `site/.env.example` to `site/.env.local` and `sanity/.env.example` to `sanity/.env`.
+4. Set the copied environment values, site metadata, and Sanity project configuration.
+5. Start the frontend with `pnpm dev:site` and Studio with `pnpm dev:sanity` in separate terminals.
 
-Run `pnpm check` before opening a pull request. It regenerates Sanity types, lints and type-checks the workspaces, and builds both the Next.js app and Sanity Studio.
+Open `start-here/index.html` directly in a browser for the visual onboarding checklist.
 
-## Visual guide
+## Where things live
 
-- Open `start-here/index.html` directly in your browser for a styled onboarding checklist that explains the repo layout, setup order, and first cleanup pass.
+- `site/app`: App Router routes, layouts, and route handlers only.
+- `site/components`: reusable UI, media, Portable Text, animation, and page-builder slices.
+- `site/sanity`: clients, queries, image helpers, preview integration, and generated types.
+- `site/styles/foundations.css`: CSS-first Tailwind theme tokens, typography, and responsive section spacing. Start customization here; `globals.css` imports it and defines base styles.
+- `sanity/src/schemaTypes`: Studio schemas, including `homePage`, `page`, and one example slice.
 
-## What stays on purpose
+The `@/*` alias resolves from `site/`. Use named imports directly from the owning file:
 
-- A single `exampleSlice` demonstrates the full slice contract across schema, query, and React component layers.
-- The frontend keeps `components`, `config`, `utils`, and `sanity` inside `site/app` while preserving the `@/...` aliases.
-- Draft mode, live preview wiring, and the page-builder renderer remain in place so new projects do not need to rediscover that setup.
-- GSAP is isolated behind `components/animation/ScrollReveal.tsx` so slices remain Server Components.
+```tsx
+import {ButtonLink} from '@/components/ui/buttonLink'
+import {Container} from '@/components/ui/container'
+```
 
-## What was intentionally removed
+The retained toolkit includes buttons, Container, SanityImage, Video, PortableTextRenderer, CategoryPill, native disclosure accordions, and a controlled native-dialog Modal. These are useful starter entrypoints even when the example homepage does not import them. Draft mode, live preview, SEO, and the schema → query → generated props → slice registry flow remain part of the baseline.
 
-- Branded layout chrome such as the inherited header, footer, and modal shell.
-- Project-specific content models such as articles, navigation settings, shared modules, testimonials, FAQ, and team members.
-- The full production slice catalog in the active registry. Only one example slice is wired into the starter now.
+## Checks
 
-## Notes
+- `pnpm test`: focused unit and rendering checks.
+- `pnpm test:browser`: browser interaction checks for native disclosure and modal behavior.
+- `pnpm check`: regenerate types, run unit tests, lint, type-check, and build both workspaces.
+- `pnpm check:deps`: inspect unused dependency candidates with fallow.
 
-- See `docs/how-to-add-a-slice.md` for the expected slice workflow.
-- See `docs/how-to-run-typegen.md` for the TypeGen workflow.
-- See `docs/architecture/animations.md` for animation conventions.
+Run `pnpm check` and `pnpm test:browser` before handing off changes. Browser tests require Playwright's Chromium installation; run `pnpm --filter starter-site exec playwright install chromium` if needed.
+
+## Guides
+
+- [New project setup checklist: Sanity + Vercel](docs/new-project-checklist.md)
+
+- [Component toolkit and styling examples](docs/component-toolkit.md)
+- [Add a slice](docs/how-to-add-a-slice.md)
+- [Run TypeGen](docs/how-to-run-typegen.md)
+- [Animation conventions](docs/architecture/animations.md)

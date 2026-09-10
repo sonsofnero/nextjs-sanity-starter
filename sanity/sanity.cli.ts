@@ -10,9 +10,9 @@ export default defineCliConfig({
   },
   typegen: {
     enabled: true,
-    path: '../site/app/sanity/queries/**/*.{ts,tsx}',
+    path: '../site/sanity/queries/**/*.{ts,tsx}',
     schema: './schema.json',
-    generates: '../site/app/sanity/sanity.types.ts',
+    generates: '../site/sanity/sanity.types.ts',
     overloadClientMethods: true,
   },
 })

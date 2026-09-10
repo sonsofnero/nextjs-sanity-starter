@@ -1,11 +1,10 @@
-import './globals.css'
+import '@/styles/globals.css'
 
 import type {Metadata} from 'next'
 import {draftMode} from 'next/headers'
 import {VisualEditing} from 'next-sanity/visual-editing'
 
 import {SanityLive} from '@/sanity/live'
-import {Providers} from './providers'
 import {DisableDraftMode} from '@/components/site/disableDraftMode'
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="min-h-screen bg-stone-50 text-stone-950 antialiased">
+      <body className="min-h-screen bg-canvas text-ink antialiased">
         <SanityLive includeDrafts={isEnabled} />
         {isEnabled && (
           <>
@@ -28,9 +27,7 @@ export default async function RootLayout({
             <DisableDraftMode />
           </>
         )}
-        <Providers>
-          <main>{children}</main>
-        </Providers>
+        <main>{children}</main>
       </body>
     </html>
   )

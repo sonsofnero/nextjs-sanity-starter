@@ -1,0 +1,395 @@
+/* Project foundations. Customize these values when starting a new project. */
+@theme {
+  --font-body:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-heading:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --color-canvas: #fafaf9;
+  --color-ink: #0c0a09;
+  --color-surface: #ffffff;
+  --color-muted: #f5f5f4;
+  --color-subtle: #57534e;
+  --color-caption: #78716c;
+  --color-border: #e7e5e4;
+  --color-action: #1c1917;
+  --color-action-hover: #44403c;
+  --color-on-action: #ffffff;
+  --radius-panel: 2rem;
+  --spacing-gutter: 1.5rem;
+}
+
+@utility typography-heading-1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 7.8vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(3.3125rem, 5.3vw, 3.75rem);
+  }
+}
+
+@utility typography-heading-2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 5.2vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 3.7vw, 3.75rem);
+  }
+}
+
+@utility typography-heading-3 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 5.2vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 3.7vw, 3.75rem);
+  }
+}
+
+@utility typography-heading-4 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 5.2vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 3.7vw, 3.75rem);
+  }
+}
+
+@utility typography-heading-5 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 5.2vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 3.7vw, 3.75rem);
+  }
+}
+
+@utility typography-heading-6 {
+  font-family: var(--font-body);
+  font-size: clamp(2.0625rem, 5.2vw, 2.3125rem);
+  line-height: 110%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.3125rem, 3.7vw, 2.625rem);
+  }
+}
+
+@utility typography-body-large {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2.6vw, 1.25rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
+  }
+}
+
+@utility typography-body-primary {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+  }
+}
+
+@utility typography-body-secondary {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 2.1vw, 1rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility typography-body-tertiary {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 150%;
+}
+
+@utility typography-body-tiny {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 140%;
+}
+
+@utility typography-blockquote-primary {
+  font-family: var(--font-body);
+  font-size: clamp(1.625rem, 3.8vw, 1.8125rem);
+  line-height: 130%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.8125rem, 2.6vw, 2.0625rem);
+  }
+}
+
+@utility typography-blockquote-secondary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 2.3vw, 1.625rem);
+  }
+}
+
+@utility typography-title-display {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3125rem, 6.9vw, 2.5rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 4.7vw, 2.9375rem);
+  }
+}
+
+@utility typography-title-primary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.4375rem, 3.4vw, 1.625rem);
+  line-height: 130%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.625rem, 2.3vw, 1.8125rem);
+  }
+}
+
+@utility typography-title-secondary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 2.6vw, 1.25rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
+  }
+}
+
+@utility typography-title-tertiary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.3vw, 1.125rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.125rem, 1.6vw, 1.25rem);
+  }
+}
+
+@utility typography-title-quaternary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.625rem;
+  line-height: 140%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@utility typography-navigation-primary {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 2.1vw, 1rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility typography-buttons-primary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+@utility section-padding-top-240 {
+  padding-top: 3.5rem;
+  @media (width >= 48rem) {
+    padding-top: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 15rem;
+  }
+}
+
+@utility section-padding-bottom-240 {
+  padding-bottom: 3.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 15rem;
+  }
+}
+
+@utility section-padding-top-200 {
+  padding-top: 3.5rem;
+  @media (width >= 48rem) {
+    padding-top: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 12.5rem;
+  }
+}
+
+@utility section-padding-bottom-200 {
+  padding-bottom: 3.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 12.5rem;
+  }
+}
+
+@utility section-padding-top-160 {
+  padding-top: 3.5rem;
+  @media (width >= 48rem) {
+    padding-top: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 10rem;
+  }
+}
+
+@utility section-padding-bottom-160 {
+  padding-bottom: 3.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 10rem;
+  }
+}
+
+@utility section-padding-top-128 {
+  padding-top: 3.5rem;
+  @media (width >= 48rem) {
+    padding-top: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 8rem;
+  }
+}
+
+@utility section-padding-bottom-128 {
+  padding-bottom: 3.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 4rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 8rem;
+  }
+}
+
+@utility section-padding-top-104 {
+  padding-top: 2.5rem;
+  @media (width >= 48rem) {
+    padding-top: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 6.5rem;
+  }
+}
+
+@utility section-padding-bottom-104 {
+  padding-bottom: 2.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 6.5rem;
+  }
+}
+
+@utility section-padding-top-80 {
+  padding-top: 2.5rem;
+  @media (width >= 48rem) {
+    padding-top: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 5rem;
+  }
+}
+
+@utility section-padding-bottom-80 {
+  padding-bottom: 2.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 5rem;
+  }
+}
+
+@utility section-padding-top-64 {
+  padding-top: 2.5rem;
+  @media (width >= 48rem) {
+    padding-top: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 4rem;
+  }
+}
+
+@utility section-padding-bottom-64 {
+  padding-bottom: 2.5rem;
+  @media (width >= 48rem) {
+    padding-bottom: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 4rem;
+  }
+}
+
+@utility section-padding-top-40 {
+  padding-top: 2rem;
+  @media (width >= 48rem) {
+    padding-top: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 2.5rem;
+  }
+}
+
+@utility section-padding-bottom-40 {
+  padding-bottom: 2rem;
+  @media (width >= 48rem) {
+    padding-bottom: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* Sample section typography preserves the starter's rendered scale. */
+@utility typography-section-heading {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  @media (width >= 48rem) {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@utility typography-section-body {
+  font-size: 1rem;
+  line-height: 1.75rem;
+  @media (width >= 48rem) {
+    font-size: 1.125rem;
+  }
+}
+
+@utility typography-eyebrow {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+@utility page-gutter {
+  padding-inline: var(--spacing-gutter);
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
+}

@@ -1,11 +1,11 @@
 import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
-import EmptyPageState from '@/components/starter/emptyPageState'
-import PageBuilder from '@/components/slices/pageBuilder'
+import {EmptyPageState} from '@/components/starter/emptyPageState'
+import {PageBuilder} from '@/components/slices/pageBuilder'
 import {client} from '@/sanity/client'
 import {sanityFetch} from '@/sanity/live'
-import {PAGE_QUERY, PAGE_SLUGS_QUERY} from '@/sanity/queries/pages'
+import {PAGE_QUERY, PAGE_SLUGS_QUERY} from '@/sanity/queries/pages/standardPage'
 
 export const revalidate = 60
 

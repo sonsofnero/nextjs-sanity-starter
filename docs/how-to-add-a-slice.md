@@ -1,36 +1,45 @@
-# How To Add A Slice
+# How to add a slice
 
-This starter keeps the slice contract explicit: copy the `exampleSlice` pattern, then wire each new slice through schema, GROQ, and React.
+Keep the contract explicit: schema → GROQ projection → generated result type → component → registry. The `exampleSlice` is the working reference.
 
-Use the existing example as your map:
+## Schema and query
 
-- Schema: `sanity/src/schemaTypes/objects/modules/content/exampleSlice.ts`
-- Query: `site/app/sanity/queries/modules/content/exampleSlice.ts`
-- Component: `site/app/components/slices/exampleSlice/exampleSlice.tsx`
+1. Create the schema in `sanity/src/schemaTypes/objects/modules/content`, following `exampleSlice.ts`. Reuse `paddingFields` when the slice needs editor-controlled section spacing.
+2. Register the schema in `sanity/src/schemaTypes/index.ts` and add it to the `of` array in `sanity/src/schemaTypes/objects/modules/pageBuilder.ts`.
+3. Create its query fragment in `site/sanity/queries/modules/content`. Include `_type`, `_key`, and the fields the component consumes.
+4. Import the fragment into `site/sanity/queries/pageBuilder.ts`. Update both the allowed `_type` filter and the projection; adding only the fragment will leave the new slice filtered out.
+5. Run `pnpm typegen` so the generated page-query result includes the new slice.
 
-## Studio
+## Component and registry
 
-1. Create the schema in `sanity/src/schemaTypes/objects/modules/content`.
-2. Export it from `sanity/src/schemaTypes/index.ts`.
-3. Add it to the `of` array in `sanity/src/schemaTypes/objects/modules/pageBuilder.ts`.
+Create `site/components/slices/<sliceName>/<sliceName>.tsx` with a named export. Derive its props from generated query results using `SliceProps`; do not maintain a second handwritten CMS contract.
 
-## Frontend
+This copyable example uses the existing generated type:
 
-1. Create the query fragment in `site/app/sanity/queries/modules/content`.
-2. Add the fragment to `site/app/sanity/queries/pageBuilder.ts`.
-3. Create the slice component in `site/app/components/slices/<sliceName>`.
-4. Register the component in `site/app/components/slices/sliceRegistry.ts`.
+```tsx
+import {Container} from '@/components/ui/container'
+import {getModulePadding} from '@/components/slices/padding'
+import type {SliceProps} from '@/components/slices/sliceTypes'
 
-## Type Safety
+export function ExampleSlice({heading, body, padding_top, padding_bottom}: SliceProps<'exampleSlice'>) {
+  const {paddingTop, paddingBottom} = getModulePadding(padding_top, padding_bottom)
+  if (!heading && !body) return null
 
-1. Run `pnpm typegen` after schema or query changes.
-2. Use the generated types from `site/app/sanity/sanity.types.ts` where they improve clarity.
-3. Normalize nullable Sanity data at the page or component boundary instead of pushing null handling deep into the tree.
+  return (
+    <section className={`${paddingTop} ${paddingBottom}`}>
+      <Container gutter>
+        {heading && <h2 className="typography-heading-2">{heading}</h2>}
+        {body && <p className="typography-body-primary">{body}</p>}
+      </Container>
+    </section>
+  )
+}
+```
 
-## Notes
+Replace the name and type discriminator for your new slice after TypeGen. Add the named import and `_type` key to `site/components/slices/sliceRegistry.ts`. Its explicit mapped type checks that every generated slice type has a compatible component. `PageBuilder` keeps each discriminator paired with its props through a generic dispatcher; avoid adding a second switch or registry.
 
-- Prefer the simplest direct implementation first.
-- Keep schema names, query fragment names, and slice component names aligned.
-- Keep slice fields boring and explicit until a second real slice proves a shared abstraction is worth it.
-- Avoid adding a new abstraction until repeated slice work proves it is necessary.
-- For viewport entrance animation, wrap the slice's inner container with `ScrollReveal`; keep the slice server-rendered and use CSS for simple hover and focus transitions.
+Keep the slice server-rendered. Put event handlers and state in a focused client component; use the [toolkit](component-toolkit.md) for FAQ and modal interactions. Optional viewport entrance animation uses the named `ScrollReveal` import from `@/components/animation/scrollReveal`.
+
+## Verify
+
+Run `pnpm check`, then `pnpm test:browser` if interactions changed. Check the slice in Studio and on the page with empty and populated optional fields. Sanity results can be nullable even when a field has editor validation; normalize or guard data at the component boundary. Use `stegaClean` before interpreting decorated string values as class-map keys or other logic.

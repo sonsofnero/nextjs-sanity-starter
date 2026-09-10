@@ -1,30 +1,26 @@
-# How To Run TypeGen
+# How to run TypeGen
 
-This starter uses Sanity TypeGen to keep GROQ query result types aligned with the Studio schema.
+Sanity TypeGen keeps GROQ result types aligned with the Studio schema.
 
-## Commands
+- `pnpm typegen:schema` extracts `sanity/schema.json`.
+- `pnpm typegen:generate` generates `site/sanity/sanity.types.ts`.
+- `pnpm typegen` runs both steps in order.
 
-- `pnpm typegen:schema`: extracts the Studio schema into `sanity/schema.json`
-- `pnpm typegen:generate`: generates `site/app/sanity/sanity.types.ts`
-- `pnpm typegen`: runs both steps in order
+Run it whenever a schema, query fragment, or page-builder projection changes. The configuration lives in `sanity/sanity.cli.ts` and scans the frontend query files under `site/sanity`. Keep generated files committed; never hand-edit them.
 
-## When To Run It
-
-Run TypeGen any time you change:
-
-- a Sanity schema
-- a GROQ query or query fragment
-- a page-builder projection
-- a shared module projection
-
-## Workflow
-
-1. Make the schema and query changes.
+1. Update schema registration and query projections together.
 2. Run `pnpm typegen`.
-3. Update any frontend types or normalization helpers that need to reflect the new nullable output.
-4. Run `pnpm type-check`.
+3. Update components for the generated nullable output.
+4. Run `pnpm type-check`, or `pnpm check` for the complete unit-test, lint, type-check, and build pipeline.
 
-## Notes
+Import generated query types directly when needed:
 
-- The Sanity CLI config for TypeGen lives in `sanity/sanity.cli.ts`.
-- Generated files should stay committed so the starter works out of the box.
+```ts
+import type {HOME_PAGE_QUERY_RESULT} from '@/sanity/sanity.types'
+import type {SliceProps} from '@/components/slices/sliceTypes'
+
+type HomePage = NonNullable<HOME_PAGE_QUERY_RESULT>
+type ExampleSliceProps = SliceProps<'exampleSlice'>
+```
+
+`SliceProps` extracts a specific `_type` from generated page-query modules. Add the query projection and regenerate before using a new discriminator. The slice registry then checks coverage against that generated union.
