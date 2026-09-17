@@ -6,6 +6,7 @@ dist
 build
 .next
 .next_backup_*
+next-env.d.ts
 coverage
 *.tsbuildinfo
 .sanity

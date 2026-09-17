@@ -95,7 +95,7 @@ export function Modal({
       {...props}
       ref={dialogRef}
       className={clsx(
-        'm-auto max-h-[calc(100%-2rem)] w-[min(32rem,calc(100%-2rem))] overflow-auto rounded-lg bg-surface p-6 text-black backdrop:bg-black/50',
+        'm-auto max-h-[calc(100%-2rem)] w-[min(32rem,calc(100%-2rem))] overflow-auto rounded-lg bg-surface p-6 text-ink backdrop:bg-black/50',
         className,
       )}
       aria-labelledby={titleId}
