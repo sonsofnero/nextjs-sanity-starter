@@ -12,11 +12,11 @@ it('compiles the real dispatcher after a second generated slice is registered', 
   host.readFile = (path) => {
     const source = readFile(path)
     if (!source) return source
-    if (path === `${root}/sanity/sanity.types.ts`) {
-      // Simulate TypeGen output without changing the actual schema or generated file.
+    if (path === `${root}/components/slices/sliceTypes.ts`) {
+      // Simulate a second generated slice without touching schema or TypeGen output.
       return source.replace(
-        /modules: Array<\{([\s\S]*?)\}> \| null/g,
-        'modules: Array<{$1} | {_type: "testSlice"; _key: string; count: number}> | null',
+        "export type PageBuilderBlock = NonNullable<PageData['modules']>[number]",
+        "export type PageBuilderBlock = NonNullable<PageData['modules']>[number] | {_type: 'testSlice'; _key: string; count: number}",
       )
     }
     if (path === `${root}/components/slices/sliceRegistry.ts`) {
@@ -30,8 +30,7 @@ it('compiles the real dispatcher after a second generated slice is registered', 
     }
     return source
   }
-  // Fail visibly if a generator-format change would make the simulation a no-op.
-  const generated = `${root}/sanity/sanity.types.ts`
+  const sliceTypes = `${root}/components/slices/sliceTypes.ts`
   const program = ts.createProgram(
     [`${root}/components/slices/pageBuilder.tsx`],
     {
@@ -41,7 +40,7 @@ it('compiles the real dispatcher after a second generated slice is registered', 
     },
     host,
   )
-  expect(program.getSourceFile(generated)?.text).toContain('_type: "testSlice"')
+  expect(program.getSourceFile(sliceTypes)?.text).toContain("_type: 'testSlice'")
   const errors = ts
     .getPreEmitDiagnostics(program)
     .filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error)

@@ -5,8 +5,8 @@ import {dataset, projectId} from '@/sanity/api'
 export type SanityImageSource = {
   asset?: {_ref?: string; _id?: string; url?: string} | null
   alt?: string | null
-  crop?: {bottom: number; left: number; right: number; top: number} | null
-  hotspot?: {x: number; y: number; width: number; height: number} | null
+  crop?: {bottom?: number; left?: number; right?: number; top?: number} | null
+  hotspot?: {x?: number; y?: number; width?: number; height?: number} | null
 }
 
 const imageBuilder = createImageUrlBuilder({projectId, dataset})

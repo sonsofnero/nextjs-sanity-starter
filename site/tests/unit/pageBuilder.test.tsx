@@ -8,7 +8,9 @@ const block: PageBuilderBlock = {
   _key: 'example',
   heading: 'Example heading',
   eyebrow: null,
-  body: null,
+  content: null,
+  image: null,
+  button: null,
   tone: null,
   padding_top: null,
   padding_bottom: null,
@@ -24,6 +26,50 @@ describe('page builder data boundary', () => {
     expect(html).toContain('Example heading')
     expect(html).toContain('section-padding-top-80')
     expect(html).toContain('bg-surface')
+  })
+  it('renders rich text, an image, and a resolved button', () => {
+    const html = renderToStaticMarkup(
+      <PageBuilder
+        blocks={[
+          {
+            ...block,
+            content: [
+              {
+                _type: 'block',
+                _key: 'b',
+                style: 'normal',
+                markDefs: [],
+                children: [
+                  {_type: 'span', _key: 's', text: 'Rich body', marks: []},
+                ],
+              },
+            ],
+            image: {
+              asset: {
+                _ref: 'image-0123456789abcdef0123456789abcdef01234567-1200x800-jpg',
+                _type: 'reference',
+              },
+              crop: null,
+              hotspot: null,
+              alt: 'Example image',
+              caption: null,
+            },
+            button: {
+              text: 'Read more',
+              variant: 'outline',
+              linkType: 'internal',
+              url: null,
+              blank: null,
+              internalReference: {_type: 'page', slug: 'about'},
+            },
+          },
+        ]}
+      />,
+    )
+    expect(html).toContain('Rich body')
+    expect(html).toContain('alt="Example image"')
+    expect(html).toContain('href="/about"')
+    expect(html).toContain('border-action')
   })
   it('skips empty slices', () => {
     expect(
