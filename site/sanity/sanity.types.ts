@@ -33,6 +33,7 @@ export type Seo = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  noIndex?: boolean;
 };
 
 export type HomePageReference = {
@@ -647,6 +648,22 @@ export type PAGE_QUERY_RESULT = {
 // Query: *[_type == "page" && defined(slug.current)][].slug.current
 export type PAGE_SLUGS_QUERY_RESULT = Array<string | null>;
 
+// Source: ../site/sanity/queries/siteSettings.ts
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings" && _id == "siteSettings"][0]{    siteName,    description,    image,    noIndex  }
+export type SITE_SETTINGS_QUERY_RESULT = {
+  siteName: string | null;
+  description: string | null;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  noIndex: boolean | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -654,5 +671,6 @@ declare module "@sanity/client" {
     '\n  *[_type == "homePage"][0]{\n    _id,\n    title,\n    modules[_type == "exampleSlice"]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': HOME_PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    modules[_type == "exampleSlice"]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)][].slug.current\n': PAGE_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    siteName,\n    description,\n    image,\n    noIndex\n  }\n': SITE_SETTINGS_QUERY_RESULT;
   }
 }

@@ -36,6 +36,7 @@ cp sanity/.env.example sanity/.env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SANITY_API_READ_TOKEN=your_viewer_token
 ```
 
@@ -53,6 +54,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 
 - [ ] Run `pnpm dev:site` and `pnpm dev:sanity` in separate terminals.
 - [ ] Open Studio at `http://localhost:3333`, sign in, and create the Home Page.
+- [ ] Open Site Settings in Studio, set the site name, and publish.
 - [ ] Add an Example Slice, fill it in, and publish.
 - [ ] Check the website at `http://localhost:3000`.
 - [ ] Open Studio's Presentation tool. Change a draft and confirm the preview updates; confirm unpublished edits do not appear on the normal published website.
@@ -97,6 +99,7 @@ ENABLE_EXPERIMENTAL_COREPACK=1
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_STUDIO_URL=https://your-project.sanity.studio
+NEXT_PUBLIC_SITE_URL=https://your-website-domain
 SANITY_API_READ_TOKEN=your_viewer_token
 ```
 

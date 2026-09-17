@@ -29,6 +29,11 @@ export const seoType = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'noIndex',
+      title: 'Hide this page from search engines',
+      type: 'boolean',
+      initialValue: false,
+    }),
   ],
 })
-

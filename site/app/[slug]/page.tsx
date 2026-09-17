@@ -5,7 +5,9 @@ import {EmptyPageState} from '@/components/starter/emptyPageState'
 import {PageBuilder} from '@/components/slices/pageBuilder'
 import {client} from '@/sanity/client'
 import {sanityFetch} from '@/sanity/live'
+import {buildMetadata} from '@/sanity/metadata'
 import {PAGE_QUERY, PAGE_SLUGS_QUERY} from '@/sanity/queries/pages/standardPage'
+import {getSiteSettings} from '@/sanity/siteSettings'
 import {SANITY_TAG} from '@/sanity/tags'
 
 export const revalidate = 60
@@ -26,17 +28,17 @@ export async function generateMetadata({
   params: Promise<{slug: string}>
 }): Promise<Metadata> {
   const {slug} = await params
-  const {data: page} = await sanityFetch({
-    query: PAGE_QUERY,
-    params: {slug},
-    stega: false,
-    tags: [SANITY_TAG],
+  const [{data: page}, settings] = await Promise.all([
+    sanityFetch({query: PAGE_QUERY, params: {slug}, stega: false, tags: [SANITY_TAG]}),
+    getSiteSettings(),
+  ])
+  if (!page) return {}
+  return buildMetadata({
+    seo: page.seo,
+    settings,
+    fallbackTitle: page.title,
+    path: `/${slug}`,
   })
-
-  return {
-    title: page?.seo?.title || page?.title || 'Untitled Page',
-    description: page?.seo?.description || undefined,
-  }
 }
 
 export default async function ContentPage({
