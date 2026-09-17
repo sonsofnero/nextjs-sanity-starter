@@ -3,6 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import {resolveLink} from '@/sanity/links'
+import {PortableTextImage} from './portableTextImage'
 
 export const portableTextComponents: PortableTextComponents = {
   block: {
@@ -35,19 +36,25 @@ export const portableTextComponents: PortableTextComponents = {
       <ol className="mb-6 list-decimal space-y-3 pl-6">{children}</ol>
     ),
   },
+  types: {
+    imageType: PortableTextImage,
+  },
   marks: {
     link: ({children, value}) => {
       const href = resolveLink(value)
       if (!href) return <>{children}</>
+      const newTab = value?.blank
+        ? {target: '_blank', rel: 'noopener noreferrer'}
+        : {}
       if (href.startsWith('/')) {
         return (
-          <Link href={href} className="underline underline-offset-4">
+          <Link href={href} className="underline underline-offset-4" {...newTab}>
             {children}
           </Link>
         )
       }
       return (
-        <a href={href} className="underline underline-offset-4">
+        <a href={href} className="underline underline-offset-4" {...newTab}>
           {children}
         </a>
       )
