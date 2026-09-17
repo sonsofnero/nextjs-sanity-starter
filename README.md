@@ -32,7 +32,7 @@ The retained toolkit includes buttons, Container, SanityImage, Video, PortableTe
 
 ## Checks
 
-GitHub Actions runs unit tests, lint, and TypeScript checks without Sanity credentials or repository variables. Vercel builds the website during deployment; run `pnpm check` locally for the full checks and both production builds.
+GitHub Actions verifies that generated Sanity types are committed, then runs unit tests, lint, the Prettier check, and TypeScript for both workspaces — all without Sanity credentials. Vercel builds the website during deployment; run `pnpm check` and `pnpm test:browser` locally before handing off changes.
 
 - `pnpm test`: focused unit and rendering checks.
 - `pnpm test:browser`: browser interaction checks for native disclosure and modal behavior.
