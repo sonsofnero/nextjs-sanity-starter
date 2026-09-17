@@ -14,5 +14,6 @@ export default defineCliConfig({
     schema: './schema.json',
     generates: '../site/sanity/sanity.types.ts',
     overloadClientMethods: true,
+    formatGeneratedCode: true,
   },
 })
