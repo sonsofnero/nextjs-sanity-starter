@@ -54,7 +54,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 ## 4. Confirm the starter works locally
 
 - [ ] Run `pnpm dev:site` and `pnpm dev:sanity` in separate terminals.
-- [ ] Open Studio at `http://localhost:3333`, sign in, and create the Home Page.
+- [ ] Seed starter content: `SEED_CONFIRM_PROJECT_ID=your_project_id pnpm seed` (safe to re-run; never overwrites). Or create the Home Page and Site Settings by hand in Studio.
 - [ ] Open Site Settings in Studio, set the site name, and publish.
 - [ ] Add an Example Slice, fill it in, and publish.
 - [ ] Check the website at `http://localhost:3000`.
@@ -115,6 +115,7 @@ Vercel supports selecting a workspace as the [project root](https://vercel.com/d
 - [ ] Create `sanity/.env.production.local` with `SANITY_STUDIO_PREVIEW_URL=https://your-website-domain`. This keeps local Studio pointed at localhost while deployed Studio previews production.
 - [ ] Redeploy Studio with `pnpm --filter starter-sanity deploy`.
 - [ ] Confirm Vercel's `NEXT_PUBLIC_SANITY_STUDIO_URL` matches the deployed Studio; redeploy the website if you change its environment variables.
+- [ ] Before launch, turn off **Hide the entire site from search engines** in Site Settings.
 - [ ] Verify production pages, images, links, mobile layout, Studio login, draft preview, publishing, and exiting draft mode. If Vercel deployment protection blocks the preview iframe, configure access for the intended editors.
 - [ ] Invite the client/editors to the Sanity project with the appropriate roles and share the Studio URL.
 

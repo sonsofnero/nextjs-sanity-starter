@@ -7,6 +7,7 @@
     "dev": "pnpm --filter starter-site dev",
     "dev:site": "pnpm --filter starter-site dev",
     "dev:sanity": "pnpm --filter starter-sanity dev",
+    "seed": "pnpm --filter starter-sanity seed",
     "build": "pnpm --filter starter-site build",
     "build:sanity": "pnpm --filter starter-sanity build",
     "lint": "pnpm --filter starter-site lint && pnpm --filter starter-sanity lint",

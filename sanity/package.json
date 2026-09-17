@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "sanity dev",
+    "seed": "sanity exec scripts/seed.ts --with-user-token",
     "build": "sanity build",
     "deploy": "sanity deploy",
     "lint": "eslint .",

@@ -14,7 +14,8 @@
     "site/sanity/images.ts",
     "site/sanity/links.ts",
     "site/sanity/visualEditing.ts",
-    "start-here/start-here.css"
+    "start-here/start-here.css",
+    "sanity/scripts/seed.ts"
   ],
   "ignorePatterns": ["site/sanity/sanity.types.ts"]
 }
