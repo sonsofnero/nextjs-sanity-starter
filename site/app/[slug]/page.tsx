@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import {draftMode} from 'next/headers'
 import {notFound} from 'next/navigation'
 
 import {EmptyPageState} from '@/components/starter/emptyPageState'
@@ -56,12 +57,15 @@ export default async function ContentPage({
   if (!page) {
     notFound()
   }
+  const showStarterState =
+    !page?.modules?.length &&
+    (process.env.NODE_ENV !== 'production' || (await draftMode()).isEnabled)
 
   return (
     <>
       <PageBuilder blocks={page.modules} />
       <EmptyPageState
-        show={!page.modules?.length}
+        show={showStarterState}
         title={page.title || 'Untitled Page'}
         description="This page exists, but it does not have any modules yet. Add the Example Slice in Sanity Studio to start shaping the page."
       />

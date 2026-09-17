@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import {draftMode} from 'next/headers'
 
 import {EmptyPageState} from '@/components/starter/emptyPageState'
 import {PageBuilder} from '@/components/slices/pageBuilder'
@@ -25,12 +26,15 @@ export default async function HomePage() {
     query: HOME_PAGE_QUERY,
     tags: [SANITY_TAG],
   })
+  const showStarterState =
+    !page?.modules?.length &&
+    (process.env.NODE_ENV !== 'production' || (await draftMode()).isEnabled)
 
   return (
     <>
       <PageBuilder blocks={page?.modules} />
       <EmptyPageState
-        show={!page?.modules?.length}
+        show={showStarterState}
         title="Your starter is ready"
         description="Add an Example Slice to the Home Page in Sanity Studio, then use it as the reference point for future slices."
       />

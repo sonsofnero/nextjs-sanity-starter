@@ -4,6 +4,7 @@ interface EmptyPageStateProps {
   description: string
 }
 
+/** Development and draft-mode aid only. Production visitors never see it. */
 export function EmptyPageState({
   show = false,
   title,
