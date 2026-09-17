@@ -116,6 +116,40 @@ export type PageBuilder = Array<
   } & ExampleSlice
 >;
 
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  siteName?: string;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  noIndex?: boolean;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
 export type HomePage = {
   _id: string;
   _type: "homePage";
@@ -137,22 +171,6 @@ export type Page = {
   slug?: Slug;
   modules?: PageBuilder;
   seo?: Seo;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type Slug = {
@@ -387,10 +405,11 @@ export type AllSanitySchemaTypes =
   | Button
   | ExampleSlice
   | PageBuilder
-  | HomePage
-  | Page
+  | SiteSettings
   | SanityImageCrop
   | SanityImageHotspot
+  | HomePage
+  | Page
   | Slug
   | MuxVideoAssetReference
   | MuxVideo

@@ -6,6 +6,10 @@ export function ComposeIcon(props: SanityIconProps) {
   return <Icon symbol="compose" {...props} />
 }
 
+export function CogIcon(props: SanityIconProps) {
+  return <Icon symbol="cog" {...props} />
+}
+
 export function DocumentIcon(props: SanityIconProps) {
   return <Icon symbol="document" {...props} />
 }
@@ -16,6 +20,10 @@ export function HomeIcon(props: SanityIconProps) {
 
 export function ImageIcon(props: SanityIconProps) {
   return <Icon symbol="image" {...props} />
+}
+
+export function PlayIcon(props: SanityIconProps) {
+  return <Icon symbol="play" {...props} />
 }
 
 export function SearchIcon(props: SanityIconProps) {
