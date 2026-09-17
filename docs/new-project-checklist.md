@@ -62,7 +62,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 
 ## 5. Make it your project
 
-- [ ] Update site metadata in `site/app/layout.tsx`, the favicon, and the title/logo in `sanity/sanity.config.ts`.
+- [ ] Set the fallback site name in `site/lib/site.ts` and the real one in Studio → Site Settings, then update the favicon and the title/logo in `sanity/sanity.config.ts`.
 - [ ] Customize fonts and typography in `site/styles/typography.css`; customize colors, spacing, and radii in `site/styles/foundations.css`.
 - [ ] Build your first slice using [the slice checklist](how-to-add-a-slice.md).
 - [ ] Run `pnpm check`.
@@ -116,6 +116,8 @@ Vercel supports selecting a workspace as the [project root](https://vercel.com/d
 - [ ] Redeploy Studio with `pnpm --filter starter-sanity deploy`.
 - [ ] Confirm Vercel's `NEXT_PUBLIC_SANITY_STUDIO_URL` matches the deployed Studio; redeploy the website if you change its environment variables.
 - [ ] Before launch, turn off **Hide the entire site from search engines** in Site Settings.
+- [ ] Confirm `/robots.txt` allows indexing on the production domain and `/sitemap.xml` lists your pages.
+- [ ] Optional: create the revalidation webhook described in section 3.
 - [ ] Verify production pages, images, links, mobile layout, Studio login, draft preview, publishing, and exiting draft mode. If Vercel deployment protection blocks the preview iframe, configure access for the intended editors.
 - [ ] Invite the client/editors to the Sanity project with the appropriate roles and share the Studio URL.
 

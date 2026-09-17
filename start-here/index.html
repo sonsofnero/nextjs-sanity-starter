@@ -86,6 +86,7 @@
               <span>`components`</span>
               <span>`sanity`</span>
               <span>`styles/foundations.css`</span>
+              <span>`styles/typography.css`</span>
             </div>
           </article>
 
@@ -179,8 +180,8 @@
                 the new site.
               </p>
               <code
-                >site/app/layout.tsx · sanity/sanity.config.ts ·
-                site/styles/foundations.css</code
+                >site/lib/site.ts · sanity/sanity.config.ts ·
+                site/styles/foundations.css · site/styles/typography.css</code
               >
               <ul>
                 <li>
@@ -204,6 +205,10 @@
                 <li>
                   Frontend defaults to `http://localhost:3000` and Studio to
                   `http://localhost:3333`.
+                </li>
+                <li>
+                  Run `SEED_CONFIRM_PROJECT_ID=your_project_id pnpm seed` and
+                  set the site name in Site Settings.
                 </li>
               </ul>
             </div>
@@ -250,8 +255,9 @@
             <div class="task-card">
               <span>2</span>
               <p>
-                Customize site/styles/foundations.css for project fonts, colors,
-                typography, and spacing.
+                Customize site/styles/foundations.css for colors, spacing, and
+                radii, and site/styles/typography.css for fonts and the type
+                scale.
               </p>
             </div>
             <div class="task-card">
