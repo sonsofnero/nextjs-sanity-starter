@@ -12,7 +12,7 @@ In `typography.css`, use either the commented Google Fonts `@import` example or 
 
 Set `--font-body` and `--font-heading` in that file to your loaded font family followed by the fallback stack. They can use the same family or different families. The body uses `--font-body`, and typography utilities use the corresponding font mapping. System fonts remain the default until you configure a font.
 
-Use `text-heading-1` through `text-heading-6`, `text-body-primary`, `text-blockquote-primary`, `text-blockquote-secondary`, and the other `text-*` utilities in that file. Existing responsive sizes and line heights are preserved.
+Use `text-heading-1` through `text-heading-6`, `text-body-primary`, `text-blockquote-primary`, `text-blockquote-secondary`, and the other `text-*` utilities in that file. Headings step down from `text-heading-1` to `text-heading-6`; each is fluid between a mobile and a desktop clamp.
 
 ```css
 /* Edit the existing @theme block in site/styles/foundations.css. */
