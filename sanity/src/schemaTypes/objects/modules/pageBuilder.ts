@@ -6,6 +6,7 @@ export const pageBuilderType = defineType({
   type: 'array',
   of: [
     defineArrayMember({type: 'exampleSlice'}),
+    defineArrayMember({type: 'videoSlice'}),
   ],
   options: {
     insertMenu: {

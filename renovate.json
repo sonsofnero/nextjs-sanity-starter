@@ -19,6 +19,10 @@
       "matchPackageNames": ["sanity", "next-sanity", "@sanity/**", "sanity-plugin-**"]
     },
     {
+      "groupName": "Mux",
+      "matchPackageNames": ["@mux/**", "sanity-plugin-mux-input"]
+    },
+    {
       "groupName": "GSAP",
       "matchPackageNames": ["gsap", "@gsap/react"]
     },

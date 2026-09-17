@@ -47,6 +47,7 @@ import {Button} from '@/components/ui/button'
 import {ButtonLink} from '@/components/ui/buttonLink'
 import {Container} from '@/components/ui/container'
 import {CategoryPill} from '@/components/ui/categoryPill'
+import {MuxVideo} from '@/components/media/muxVideo'
 import {SanityImage} from '@/components/media/sanityImage'
 import {Video} from '@/components/media/video'
 import {PortableTextRenderer} from '@/components/portableText/portableTextRenderer'
@@ -55,6 +56,7 @@ import {PortableTextRenderer} from '@/components/portableText/portableTextRender
 - `Button` renders a native button and defaults to `type="button"`. Set `type="submit"` for forms. `ButtonLink` renders Next.js `Link` for navigation. Both accept `variant="primary"`, `"secondary"`, or `"outline"`, plus native props and `className`.
 - `Container` renders a centered div. `size` is `content` (default), `header`, or `wide`. Gutters are opt-in with `gutter`, useful when a surrounding section does not already supply horizontal padding.
 - `CategoryPill` renders a span with a required `label`; it has no navigation or selection behavior.
+- `MuxVideo` is a client component wrapping Mux Player; pass `playbackId`, `title`, and the asset's `aspectRatio`. `videoSlice` is the reference. `Video` remains for self-hosted files.
 - `SanityImage` takes a Sanity `image` source and required `alt`. Missing or invalid images render nothing. It derives dimensions, honors crop/hotspot through the Sanity URL builder, and passes image props through to Next.js Image. Supply accurate `sizes`; `fill` requires a positioned parent with dimensions.
 - `Video` is a native video with controls enabled by default. Pass video props and track/source children as needed.
 - `PortableTextRenderer` accepts nullable `value`, `className`, and optional `components` overrides. Overrides merge with the existing block, list, mark, and custom-type mappings.

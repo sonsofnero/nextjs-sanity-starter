@@ -97,6 +97,16 @@ export type Button = {
   variant?: "primary" | "secondary" | "outline";
 };
 
+export type VideoSlice = {
+  _type: "videoSlice";
+  title?: string;
+  video?: MuxVideo;
+  padding_top?:
+    "none" | "240" | "200" | "160" | "128" | "104" | "80" | "64" | "40";
+  padding_bottom?:
+    "none" | "240" | "200" | "160" | "128" | "104" | "80" | "64" | "40";
+};
+
 export type ExampleSlice = {
   _type: "exampleSlice";
   eyebrow?: string;
@@ -112,9 +122,12 @@ export type ExampleSlice = {
 };
 
 export type PageBuilder = Array<
-  {
-    _key: string;
-  } & ExampleSlice
+  | ({
+      _key: string;
+    } & ExampleSlice)
+  | ({
+      _key: string;
+    } & VideoSlice)
 >;
 
 export type SiteSettings = {
@@ -174,12 +187,6 @@ export type Page = {
   seo?: Seo;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type MuxVideoAssetReference = {
   _ref: string;
   _type: "reference";
@@ -190,6 +197,12 @@ export type MuxVideoAssetReference = {
 export type MuxVideo = {
   _type: "mux.video";
   asset?: MuxVideoAssetReference;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type MuxVideoAsset = {
@@ -404,6 +417,7 @@ export type AllSanitySchemaTypes =
   | PortableText
   | ImageType
   | Button
+  | VideoSlice
   | ExampleSlice
   | PageBuilder
   | SiteSettings
@@ -411,9 +425,9 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | HomePage
   | Page
-  | Slug
   | MuxVideoAssetReference
   | MuxVideo
+  | Slug
   | MuxVideoAsset
   | MuxAssetData
   | MuxMasterFile
@@ -433,213 +447,279 @@ export type AllSanitySchemaTypes =
 
 // Source: ../site/sanity/queries/pages/home.ts
 // Variable: HOME_PAGE_QUERY
-// Query: *[_type == "homePage"][0]{    _id,    title,    modules[_type == "exampleSlice"]{    _type == 'exampleSlice' => {    _type,    _key,    eyebrow,    heading,    content[]{  ...,  _type == "imageType" => {_type, _key,   asset,  crop,  hotspot,  alt,  caption},  markDefs[]{    ...,    _type == "link" => {_type, _key,   linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}}  }},    image{  asset,  crop,  hotspot,  alt,  caption},    button{  text,  variant,    linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}},    tone,      padding_top,  padding_bottom  },  _type,  _key},    seo  }
+// Query: *[_type == "homePage"][0]{    _id,    title,    modules[_type in ["exampleSlice", "videoSlice"]]{    _type == 'exampleSlice' => {    _type,    _key,    eyebrow,    heading,    content[]{  ...,  _type == "imageType" => {_type, _key,   asset,  crop,  hotspot,  alt,  caption},  markDefs[]{    ...,    _type == "link" => {_type, _key,   linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}}  }},    image{  asset,  crop,  hotspot,  alt,  caption},    button{  text,  variant,    linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}},    tone,      padding_top,  padding_bottom  },    _type == 'videoSlice' => {    _type,    _key,    title,    "video": video.asset->{playbackId, "aspectRatio": data.aspect_ratio},      padding_top,  padding_bottom  },  _type,  _key},    seo  }
 export type HOME_PAGE_QUERY_RESULT = {
   _id: string;
   title: string | null;
-  modules: Array<{
-    _type: "exampleSlice";
-    _key: string;
-    eyebrow: string | null;
-    heading: string | null;
-    content: Array<
-      | {
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "h1" | "h2" | "h3" | "large" | "normal";
-          listItem?: "bullet" | "number";
-          markDefs: Array<{
-            linkType: "internal" | "url" | null;
-            internalReference:
-              | {
-                  _type: "homePage";
-                  slug: null;
-                }
-              | {
-                  _type: "page";
-                  slug: string | null;
-                }
-              | null;
-            url: string | null;
-            blank: boolean | null;
-            _type: "link";
-            _key: string;
-          }> | null;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }
-      | {
-          _key: string;
-          _type: "imageType";
+  modules: Array<
+    | {
+        _type: "exampleSlice";
+        _key: string;
+        eyebrow: string | null;
+        heading: string | null;
+        content: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "large" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<{
+                linkType: "internal" | "url" | null;
+                internalReference:
+                  | {
+                      _type: "homePage";
+                      slug: null;
+                    }
+                  | {
+                      _type: "page";
+                      slug: string | null;
+                    }
+                  | null;
+                url: string | null;
+                blank: boolean | null;
+                _type: "link";
+                _key: string;
+              }> | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "imageType";
+              asset: SanityImageAssetReference | null;
+              media?: unknown;
+              hotspot: SanityImageHotspot | null;
+              crop: SanityImageCrop | null;
+              alt: string | null;
+              caption: string | null;
+              markDefs: null;
+            }
+        > | null;
+        image: {
           asset: SanityImageAssetReference | null;
-          media?: unknown;
-          hotspot: SanityImageHotspot | null;
           crop: SanityImageCrop | null;
+          hotspot: SanityImageHotspot | null;
           alt: string | null;
           caption: string | null;
-          markDefs: null;
-        }
-    > | null;
-    image: {
-      asset: SanityImageAssetReference | null;
-      crop: SanityImageCrop | null;
-      hotspot: SanityImageHotspot | null;
-      alt: string | null;
-      caption: string | null;
-    } | null;
-    button: {
-      text: string | null;
-      variant: "outline" | "primary" | "secondary" | null;
-      linkType: "internal" | "url" | null;
-      url: string | null;
-      blank: boolean | null;
-      internalReference:
-        | {
-            _type: "homePage";
-            slug: null;
-          }
-        | {
-            _type: "page";
-            slug: string | null;
-          }
-        | null;
-    } | null;
-    tone: "default" | "muted" | null;
-    padding_top:
-      | "104"
-      | "128"
-      | "160"
-      | "200"
-      | "240"
-      | "40"
-      | "64"
-      | "80"
-      | "none"
-      | null;
-    padding_bottom:
-      | "104"
-      | "128"
-      | "160"
-      | "200"
-      | "240"
-      | "40"
-      | "64"
-      | "80"
-      | "none"
-      | null;
-  }> | null;
+        } | null;
+        button: {
+          text: string | null;
+          variant: "outline" | "primary" | "secondary" | null;
+          linkType: "internal" | "url" | null;
+          url: string | null;
+          blank: boolean | null;
+          internalReference:
+            | {
+                _type: "homePage";
+                slug: null;
+              }
+            | {
+                _type: "page";
+                slug: string | null;
+              }
+            | null;
+        } | null;
+        tone: "default" | "muted" | null;
+        padding_top:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+        padding_bottom:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+      }
+    | {
+        _type: "videoSlice";
+        _key: string;
+        title: string | null;
+        video: {
+          playbackId: string | null;
+          aspectRatio: string | null;
+        } | null;
+        padding_top:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+        padding_bottom:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+      }
+  > | null;
   seo: Seo | null;
 } | null;
 
 // Source: ../site/sanity/queries/pages/standardPage.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    _id,    _type,    title,    slug,    modules[_type == "exampleSlice"]{    _type == 'exampleSlice' => {    _type,    _key,    eyebrow,    heading,    content[]{  ...,  _type == "imageType" => {_type, _key,   asset,  crop,  hotspot,  alt,  caption},  markDefs[]{    ...,    _type == "link" => {_type, _key,   linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}}  }},    image{  asset,  crop,  hotspot,  alt,  caption},    button{  text,  variant,    linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}},    tone,      padding_top,  padding_bottom  },  _type,  _key},    seo  }
+// Query: *[_type == "page" && slug.current == $slug][0]{    _id,    _type,    title,    slug,    modules[_type in ["exampleSlice", "videoSlice"]]{    _type == 'exampleSlice' => {    _type,    _key,    eyebrow,    heading,    content[]{  ...,  _type == "imageType" => {_type, _key,   asset,  crop,  hotspot,  alt,  caption},  markDefs[]{    ...,    _type == "link" => {_type, _key,   linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}}  }},    image{  asset,  crop,  hotspot,  alt,  caption},    button{  text,  variant,    linkType,  url,  blank,  internalReference->{_type, "slug": slug.current}},    tone,      padding_top,  padding_bottom  },    _type == 'videoSlice' => {    _type,    _key,    title,    "video": video.asset->{playbackId, "aspectRatio": data.aspect_ratio},      padding_top,  padding_bottom  },  _type,  _key},    seo  }
 export type PAGE_QUERY_RESULT = {
   _id: string;
   _type: "page";
   title: string | null;
   slug: Slug | null;
-  modules: Array<{
-    _type: "exampleSlice";
-    _key: string;
-    eyebrow: string | null;
-    heading: string | null;
-    content: Array<
-      | {
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "h1" | "h2" | "h3" | "large" | "normal";
-          listItem?: "bullet" | "number";
-          markDefs: Array<{
-            linkType: "internal" | "url" | null;
-            internalReference:
-              | {
-                  _type: "homePage";
-                  slug: null;
-                }
-              | {
-                  _type: "page";
-                  slug: string | null;
-                }
-              | null;
-            url: string | null;
-            blank: boolean | null;
-            _type: "link";
-            _key: string;
-          }> | null;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }
-      | {
-          _key: string;
-          _type: "imageType";
+  modules: Array<
+    | {
+        _type: "exampleSlice";
+        _key: string;
+        eyebrow: string | null;
+        heading: string | null;
+        content: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "large" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<{
+                linkType: "internal" | "url" | null;
+                internalReference:
+                  | {
+                      _type: "homePage";
+                      slug: null;
+                    }
+                  | {
+                      _type: "page";
+                      slug: string | null;
+                    }
+                  | null;
+                url: string | null;
+                blank: boolean | null;
+                _type: "link";
+                _key: string;
+              }> | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "imageType";
+              asset: SanityImageAssetReference | null;
+              media?: unknown;
+              hotspot: SanityImageHotspot | null;
+              crop: SanityImageCrop | null;
+              alt: string | null;
+              caption: string | null;
+              markDefs: null;
+            }
+        > | null;
+        image: {
           asset: SanityImageAssetReference | null;
-          media?: unknown;
-          hotspot: SanityImageHotspot | null;
           crop: SanityImageCrop | null;
+          hotspot: SanityImageHotspot | null;
           alt: string | null;
           caption: string | null;
-          markDefs: null;
-        }
-    > | null;
-    image: {
-      asset: SanityImageAssetReference | null;
-      crop: SanityImageCrop | null;
-      hotspot: SanityImageHotspot | null;
-      alt: string | null;
-      caption: string | null;
-    } | null;
-    button: {
-      text: string | null;
-      variant: "outline" | "primary" | "secondary" | null;
-      linkType: "internal" | "url" | null;
-      url: string | null;
-      blank: boolean | null;
-      internalReference:
-        | {
-            _type: "homePage";
-            slug: null;
-          }
-        | {
-            _type: "page";
-            slug: string | null;
-          }
-        | null;
-    } | null;
-    tone: "default" | "muted" | null;
-    padding_top:
-      | "104"
-      | "128"
-      | "160"
-      | "200"
-      | "240"
-      | "40"
-      | "64"
-      | "80"
-      | "none"
-      | null;
-    padding_bottom:
-      | "104"
-      | "128"
-      | "160"
-      | "200"
-      | "240"
-      | "40"
-      | "64"
-      | "80"
-      | "none"
-      | null;
-  }> | null;
+        } | null;
+        button: {
+          text: string | null;
+          variant: "outline" | "primary" | "secondary" | null;
+          linkType: "internal" | "url" | null;
+          url: string | null;
+          blank: boolean | null;
+          internalReference:
+            | {
+                _type: "homePage";
+                slug: null;
+              }
+            | {
+                _type: "page";
+                slug: string | null;
+              }
+            | null;
+        } | null;
+        tone: "default" | "muted" | null;
+        padding_top:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+        padding_bottom:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+      }
+    | {
+        _type: "videoSlice";
+        _key: string;
+        title: string | null;
+        video: {
+          playbackId: string | null;
+          aspectRatio: string | null;
+        } | null;
+        padding_top:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+        padding_bottom:
+          | "104"
+          | "128"
+          | "160"
+          | "200"
+          | "240"
+          | "40"
+          | "64"
+          | "80"
+          | "none"
+          | null;
+      }
+  > | null;
   seo: Seo | null;
 } | null;
 
@@ -684,8 +764,8 @@ export type SITEMAP_QUERY_RESULT = Array<
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "homePage"][0]{\n    _id,\n    title,\n    modules[_type == "exampleSlice"]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': HOME_PAGE_QUERY_RESULT;
-    '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    modules[_type == "exampleSlice"]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': PAGE_QUERY_RESULT;
+    '\n  *[_type == "homePage"][0]{\n    _id,\n    title,\n    modules[_type in ["exampleSlice", "videoSlice"]]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  \n  _type == \'videoSlice\' => {\n    _type,\n    _key,\n    title,\n    "video": video.asset->{playbackId, "aspectRatio": data.aspect_ratio},\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': HOME_PAGE_QUERY_RESULT;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    modules[_type in ["exampleSlice", "videoSlice"]]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  \n  _type == \'videoSlice\' => {\n    _type,\n    _key,\n    title,\n    "video": video.asset->{playbackId, "aspectRatio": data.aspect_ratio},\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)][].slug.current\n': PAGE_SLUGS_QUERY_RESULT;
     '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    siteName,\n    description,\n    image,\n    noIndex\n  }\n': SITE_SETTINGS_QUERY_RESULT;
     '\n  *[\n    _type in ["homePage", "page"]\n    && seo.noIndex != true\n    && (_type == "homePage" || defined(slug.current))\n  ]{\n    _type,\n    "slug": slug.current,\n    _updatedAt\n  }\n': SITEMAP_QUERY_RESULT;

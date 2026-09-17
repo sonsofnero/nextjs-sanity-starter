@@ -3,6 +3,12 @@ import {describe, expect, it, vi} from 'vitest'
 import {PageBuilder} from '@/components/slices/pageBuilder'
 import type {PageBuilderBlock} from '@/components/slices/sliceTypes'
 
+vi.mock('@mux/mux-player-react', () => ({
+  default: (props: {playbackId: string}) => (
+    <div data-playback-id={props.playbackId} />
+  ),
+}))
+
 const block: PageBuilderBlock = {
   _type: 'exampleSlice',
   _key: 'example',
@@ -70,6 +76,22 @@ describe('page builder data boundary', () => {
     expect(html).toContain('alt="Example image"')
     expect(html).toContain('href="/about"')
     expect(html).toContain('border-action')
+  })
+  it('renders a video slice only when a playback id exists', () => {
+    const video = {
+      _type: 'videoSlice' as const,
+      _key: 'video',
+      title: 'Intro',
+      video: {playbackId: 'abc123', aspectRatio: '16:9'},
+      padding_top: null,
+      padding_bottom: null,
+    }
+    expect(renderToStaticMarkup(<PageBuilder blocks={[video]} />)).toContain(
+      'data-playback-id="abc123"',
+    )
+    expect(
+      renderToStaticMarkup(<PageBuilder blocks={[{...video, video: null}]} />),
+    ).toBe('')
   })
   it('skips empty slices', () => {
     expect(

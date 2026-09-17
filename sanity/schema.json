@@ -555,6 +555,127 @@
     }
   },
   {
+    "name": "videoSlice",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "videoSlice"
+          }
+        },
+        "title": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "video": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "mux.video"
+          },
+          "optional": true
+        },
+        "padding_top": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "240"
+              },
+              {
+                "type": "string",
+                "value": "200"
+              },
+              {
+                "type": "string",
+                "value": "160"
+              },
+              {
+                "type": "string",
+                "value": "128"
+              },
+              {
+                "type": "string",
+                "value": "104"
+              },
+              {
+                "type": "string",
+                "value": "80"
+              },
+              {
+                "type": "string",
+                "value": "64"
+              },
+              {
+                "type": "string",
+                "value": "40"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "padding_bottom": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "240"
+              },
+              {
+                "type": "string",
+                "value": "200"
+              },
+              {
+                "type": "string",
+                "value": "160"
+              },
+              {
+                "type": "string",
+                "value": "128"
+              },
+              {
+                "type": "string",
+                "value": "104"
+              },
+              {
+                "type": "string",
+                "value": "80"
+              },
+              {
+                "type": "string",
+                "value": "64"
+              },
+              {
+                "type": "string",
+                "value": "40"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "name": "exampleSlice",
     "type": "type",
     "value": {
@@ -721,19 +842,39 @@
     "value": {
       "type": "array",
       "of": {
-        "type": "object",
-        "attributes": {
-          "_key": {
-            "type": "objectAttribute",
-            "value": {
-              "type": "string"
+        "type": "union",
+        "of": [
+          {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "exampleSlice"
+            }
+          },
+          {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "videoSlice"
             }
           }
-        },
-        "rest": {
-          "type": "inline",
-          "name": "exampleSlice"
-        }
+        ]
       }
     }
   },
@@ -1059,36 +1200,6 @@
     }
   },
   {
-    "name": "slug",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "slug"
-          }
-        },
-        "current": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "source": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
     "type": "type",
     "name": "mux.videoAsset.reference",
     "value": {
@@ -1136,6 +1247,36 @@
           "value": {
             "type": "inline",
             "name": "mux.videoAsset.reference"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "slug",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "slug"
+          }
+        },
+        "current": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "source": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }

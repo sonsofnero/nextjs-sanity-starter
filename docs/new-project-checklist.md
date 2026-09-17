@@ -18,6 +18,7 @@ Keep the workspace package names initially: root scripts refer to `starter-site`
 - [ ] Copy the project ID.
 - [ ] Under the project's API settings, create a **Viewer** token for draft previews. Save it for `SANITY_API_READ_TOKEN`; do not use an Editor token. [Token setup](https://www.sanity.io/docs/nextjs/configure-sanity-client-nextjs).
 - [ ] Add CORS origins `http://localhost:3333` and `http://localhost:3000`, allowing credentials for Studio and authenticated preview. [CORS settings](https://www.sanity.io/docs/content-lake/cors).
+- [ ] If the project uses video: in the Studio, open any Video slice and enter Mux API credentials when the Mux plugin prompts. Skip otherwise; remove `videoSlice` and `sanity-plugin-mux-input` if the project never needs video.
 
 This repository already contains Studio. You do not need to scaffold another Studio with `sanity init`.
 
