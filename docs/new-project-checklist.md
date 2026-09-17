@@ -60,7 +60,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 ## 5. Make it your project
 
 - [ ] Update site metadata in `site/app/layout.tsx`, the favicon, and the title/logo in `sanity/sanity.config.ts`.
-- [ ] Customize fonts, colors, typography, spacing, and radii in `site/styles/foundations.css`.
+- [ ] Customize fonts and typography in `site/styles/typography.css`; customize colors, spacing, and radii in `site/styles/foundations.css`.
 - [ ] Build your first slice using [the slice checklist](how-to-add-a-slice.md).
 - [ ] Run `pnpm check`.
 - [ ] Install the browser once with `pnpm --filter starter-site exec playwright install chromium`, then run `pnpm test:browser`.

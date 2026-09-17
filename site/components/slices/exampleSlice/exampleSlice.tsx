@@ -44,15 +44,15 @@ export function ExampleSlice({
     >
       <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col gap-5 rounded-panel border border-border/80 p-8 md:p-12">
         {eyebrow ? (
-          <p className="typography-eyebrow text-caption">{eyebrow}</p>
+          <p className="text-eyebrow text-caption">{eyebrow}</p>
         ) : null}
         {heading ? (
-          <h2 className="max-w-3xl typography-section-heading text-ink">
+          <h2 className="max-w-3xl text-section-heading text-ink">
             {heading}
           </h2>
         ) : null}
         {body ? (
-          <p className="max-w-2xl typography-section-body text-subtle">
+          <p className="max-w-2xl text-section-body text-subtle">
             {body}
           </p>
         ) : null}

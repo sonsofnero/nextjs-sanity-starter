@@ -7,19 +7,19 @@ import {resolveLink} from '@/sanity/links'
 export const portableTextComponents: PortableTextComponents = {
   block: {
     h1: ({children}) => (
-      <h1 className={clsx('typography-heading-1', 'mb-4')}>{children}</h1>
+      <h1 className={clsx('text-heading-1', 'mb-4')}>{children}</h1>
     ),
     h2: ({children}) => (
-      <h2 className={clsx('typography-heading-2', 'mb-4')}>{children}</h2>
+      <h2 className={clsx('text-heading-2', 'mb-4')}>{children}</h2>
     ),
     h3: ({children}) => (
-      <h3 className={clsx('typography-heading-3', 'mb-4')}>{children}</h3>
+      <h3 className={clsx('text-heading-3', 'mb-4')}>{children}</h3>
     ),
     normal: ({children}) => (
-      <p className={clsx('typography-body-primary', 'mb-6')}>{children}</p>
+      <p className={clsx('text-body-primary', 'mb-6')}>{children}</p>
     ),
     large: ({children}) => (
-      <p className={clsx('typography-body-large', 'mb-6')}>{children}</p>
+      <p className={clsx('text-body-large', 'mb-6')}>{children}</p>
     ),
     blockquote: ({children}) => (
       <blockquote className="mb-6 border-l-4 pl-4 italic">

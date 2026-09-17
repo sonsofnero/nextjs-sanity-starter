@@ -17,9 +17,9 @@ export function EmptyPageState({
     <section className="px-6 py-16 md:px-8 md:py-24 lg:px-12">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 rounded-panel border border-border bg-surface p-8 shadow-sm md:p-12">
         <div className="space-y-3">
-          <p className="typography-eyebrow text-caption">Blank starter state</p>
-          <h1 className="typography-section-heading text-ink">{title}</h1>
-          <p className="max-w-2xl typography-section-body text-subtle">
+          <p className="text-eyebrow text-caption">Blank starter state</p>
+          <h1 className="text-section-heading text-ink">{title}</h1>
+          <p className="max-w-2xl text-section-body text-subtle">
             {description}
           </p>
         </div>

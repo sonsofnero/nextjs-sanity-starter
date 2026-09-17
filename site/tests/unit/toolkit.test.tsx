@@ -61,7 +61,7 @@ it('merges a custom mark with default headings and renders missing links as text
       components={{marks: {strong: ({children}) => <b>{children}</b>}}}
     />,
   )
-  expect(html).toContain('typography-heading-2')
+  expect(html).toContain('text-heading-2')
   expect(html).toContain('Hello</h2>')
   expect(html).not.toContain('<a')
 })

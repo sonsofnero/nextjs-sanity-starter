@@ -8,7 +8,7 @@ import {ScrollReveal} from '@/components/animation/scrollReveal'
 export function SectionContent() {
   return (
     <ScrollReveal className="mx-auto max-w-4xl" y={24} duration={0.6}>
-      <h2 className="typography-heading-2">Section heading</h2>
+      <h2 className="text-heading-2">Section heading</h2>
     </ScrollReveal>
   )
 }

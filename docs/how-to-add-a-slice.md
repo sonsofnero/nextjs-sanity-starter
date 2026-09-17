@@ -28,8 +28,8 @@ export function ExampleSlice({heading, body, padding_top, padding_bottom}: Slice
   return (
     <section className={`${paddingTop} ${paddingBottom}`}>
       <Container gutter>
-        {heading && <h2 className="typography-heading-2">{heading}</h2>}
-        {body && <p className="typography-body-primary">{body}</p>}
+        {heading && <h2 className="text-heading-2">{heading}</h2>}
+        {body && <p className="text-body-primary">{body}</p>}
       </Container>
     </section>
   )

@@ -17,7 +17,8 @@ Open `start-here/index.html` directly in a browser for the visual onboarding che
 - `site/app`: App Router routes, layouts, and route handlers only.
 - `site/components`: reusable UI, media, Portable Text, animation, and page-builder slices.
 - `site/sanity`: clients, queries, image helpers, preview integration, and generated types.
-- `site/styles/foundations.css`: CSS-first Tailwind theme tokens, typography, and responsive section spacing. Start customization here; `globals.css` imports it and defines base styles.
+- `site/styles/foundations.css`: CSS-first Tailwind colors, radii, gutters, and responsive section spacing.
+- `site/styles/typography.css`: local/Google font setup, body/heading font mappings, and responsive `text-*` typography utilities. `globals.css` imports both stylesheets and defines base styles.
 - `sanity/src/schemaTypes`: Studio schemas, including `homePage`, `page`, and one example slice.
 
 The `@/*` alias resolves from `site/`. Use named imports directly from the owning file:
