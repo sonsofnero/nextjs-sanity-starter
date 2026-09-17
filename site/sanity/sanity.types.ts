@@ -35,6 +35,83 @@ export type Seo = {
   };
 };
 
+export type HomePageReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "homePage";
+};
+
+export type PageReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "page";
+};
+
+export type PortableText = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "large";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        linkType?: "internal" | "url";
+        internalReference?: HomePageReference | PageReference;
+        url?: string;
+        blank?: boolean;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & ImageType)
+>;
+
+export type ImageType = {
+  _type: "imageType";
+  asset?: SanityImageAssetReference;
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  caption?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Button = {
+  _type: "button";
+  text?: string;
+  linkType?: "internal" | "url";
+  internalReference?: HomePageReference | PageReference;
+  url?: string;
+  blank?: boolean;
+  variant?: "primary" | "secondary" | "outline";
+};
+
 export type ExampleSlice = {
   _type: "exampleSlice";
   eyebrow?: string;
@@ -80,22 +157,6 @@ export type HomePage = {
   title?: string;
   modules?: PageBuilder;
   seo?: Seo;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type MuxVideoAssetReference = {
@@ -317,13 +378,18 @@ export type Geopoint = {
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
   | Seo
+  | HomePageReference
+  | PageReference
+  | PortableText
+  | ImageType
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Button
   | ExampleSlice
   | PageBuilder
   | Page
   | Slug
   | HomePage
-  | SanityImageCrop
-  | SanityImageHotspot
   | MuxVideoAssetReference
   | MuxVideo
   | MuxVideoAsset
