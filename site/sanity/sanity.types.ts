@@ -664,6 +664,22 @@ export type SITE_SETTINGS_QUERY_RESULT = {
   noIndex: boolean | null;
 } | null;
 
+// Source: ../site/sanity/queries/sitemap.ts
+// Variable: SITEMAP_QUERY
+// Query: *[    _type in ["homePage", "page"]    && seo.noIndex != true    && (_type == "homePage" || defined(slug.current))  ]{    _type,    "slug": slug.current,    _updatedAt  }
+export type SITEMAP_QUERY_RESULT = Array<
+  | {
+      _type: "homePage";
+      slug: null;
+      _updatedAt: string;
+    }
+  | {
+      _type: "page";
+      slug: string | null;
+      _updatedAt: string;
+    }
+>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -672,5 +688,6 @@ declare module "@sanity/client" {
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    modules[_type == "exampleSlice"]{\n  \n  _type == \'exampleSlice\' => {\n    _type,\n    _key,\n    eyebrow,\n    heading,\n    content[]{\n  ...,\n  _type == "imageType" => {_type, _key, \n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n  markDefs[]{\n    ...,\n    _type == "link" => {_type, _key, \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n}\n  }\n},\n    image{\n  asset,\n  crop,\n  hotspot,\n  alt,\n  caption\n},\n    button{\n  text,\n  variant,\n  \n  linkType,\n  url,\n  blank,\n  internalReference->{_type, "slug": slug.current}\n\n},\n    tone,\n    \n  padding_top,\n  padding_bottom\n\n  }\n,\n  _type,\n  _key\n},\n    seo\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && defined(slug.current)][].slug.current\n': PAGE_SLUGS_QUERY_RESULT;
     '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    siteName,\n    description,\n    image,\n    noIndex\n  }\n': SITE_SETTINGS_QUERY_RESULT;
+    '\n  *[\n    _type in ["homePage", "page"]\n    && seo.noIndex != true\n    && (_type == "homePage" || defined(slug.current))\n  ]{\n    _type,\n    "slug": slug.current,\n    _updatedAt\n  }\n': SITEMAP_QUERY_RESULT;
   }
 }
