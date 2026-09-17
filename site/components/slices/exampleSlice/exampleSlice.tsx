@@ -22,7 +22,11 @@ const toneClasses = {
   muted: 'bg-muted',
 } as const
 
-const buttonVariants: readonly ButtonVariant[] = ['primary', 'secondary', 'outline']
+const buttonVariants: readonly ButtonVariant[] = [
+  'primary',
+  'secondary',
+  'outline',
+]
 
 export function ExampleSlice({
   eyebrow,
@@ -53,15 +57,22 @@ export function ExampleSlice({
   )
 
   return (
-    <section className={clsx('page-gutter', toneClass, paddingTop, paddingBottom)}>
+    <section
+      className={clsx('page-gutter', toneClass, paddingTop, paddingBottom)}
+    >
       <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col gap-5 rounded-panel border border-border/80 p-8 md:p-12">
-        {eyebrow ? <p className="text-eyebrow text-caption">{eyebrow}</p> : null}
+        {eyebrow ? (
+          <p className="text-eyebrow text-caption">{eyebrow}</p>
+        ) : null}
         {heading ? (
           <h2 className="max-w-3xl text-heading-2 font-semibold text-ink">
             {heading}
           </h2>
         ) : null}
-        <PortableTextRenderer value={content} className="max-w-2xl text-subtle" />
+        <PortableTextRenderer
+          value={content}
+          className="max-w-2xl text-subtle"
+        />
         <SanityImage
           image={image}
           alt={image?.alt ?? ''}

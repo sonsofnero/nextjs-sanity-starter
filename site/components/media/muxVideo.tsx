@@ -12,7 +12,12 @@ export type MuxVideoProps = {
 }
 
 /** Client leaf: keeps the Mux player bundle out of pages that do not render video. */
-export function MuxVideo({playbackId, title, aspectRatio, className}: MuxVideoProps) {
+export function MuxVideo({
+  playbackId,
+  title,
+  aspectRatio,
+  className,
+}: MuxVideoProps) {
   return (
     <MuxPlayer
       playbackId={playbackId}

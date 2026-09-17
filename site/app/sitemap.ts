@@ -13,7 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   return documents.map((document) => ({
-    url: document._type === 'homePage' ? siteUrl : `${siteUrl}/${document.slug}`,
+    url:
+      document._type === 'homePage' ? siteUrl : `${siteUrl}/${document.slug}`,
     lastModified: document._updatedAt,
   }))
 }

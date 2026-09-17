@@ -22,8 +22,16 @@ import {PortableTextRenderer} from '@/components/portableText/portableTextRender
 import {getModulePadding} from '@/components/slices/padding'
 import type {SliceProps} from '@/components/slices/sliceTypes'
 
-export function ExampleSlice({heading, content, padding_top, padding_bottom}: SliceProps<'exampleSlice'>) {
-  const {paddingTop, paddingBottom} = getModulePadding(padding_top, padding_bottom)
+export function ExampleSlice({
+  heading,
+  content,
+  padding_top,
+  padding_bottom,
+}: SliceProps<'exampleSlice'>) {
+  const {paddingTop, paddingBottom} = getModulePadding(
+    padding_top,
+    padding_bottom,
+  )
   if (!heading && !content?.length) return null
 
   return (

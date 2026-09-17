@@ -95,11 +95,18 @@ export function Questions() {
           <p>Install dependencies and configure your environment files.</p>
         </AccordionItem>
         <AccordionItem title="Where are the styles?">
-          <p>Edit site/styles/foundations.css and site/styles/typography.css.</p>
+          <p>
+            Edit site/styles/foundations.css and site/styles/typography.css.
+          </p>
         </AccordionItem>
       </Accordion>
       <Button onClick={() => setOpen(true)}>More information</Button>
-      <Modal open={open} onOpenChange={setOpen} title="More information" description="Project setup details">
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="More information"
+        description="Project setup details"
+      >
         <p>Use the README to work through setup.</p>
       </Modal>
     </>

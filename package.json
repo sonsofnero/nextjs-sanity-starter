@@ -16,7 +16,9 @@
     "typegen:generate": "pnpm --filter starter-sanity typegen",
     "typegen": "pnpm typegen:schema && pnpm typegen:generate",
     "check:deps": "fallow dead-code --format json --quiet --unused-deps",
-    "check": "pnpm typegen && pnpm test && pnpm lint && pnpm type-check && pnpm build && pnpm build:sanity",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typegen && pnpm test && pnpm lint && pnpm format:check && pnpm type-check && pnpm build && pnpm build:sanity",
     "test": "pnpm --filter starter-site test",
     "test:browser": "pnpm --filter starter-site test:browser"
   },
@@ -24,6 +26,7 @@
     "node": ">=24"
   },
   "devDependencies": {
-    "fallow": "3.3.0"
+    "fallow": "3.3.0",
+    "prettier": "3.9.7"
   }
 }

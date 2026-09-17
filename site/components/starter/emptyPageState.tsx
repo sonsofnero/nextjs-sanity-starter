@@ -20,9 +20,7 @@ export function EmptyPageState({
         <div className="space-y-3">
           <p className="text-eyebrow text-caption">Blank starter state</p>
           <h1 className="text-heading-2 font-semibold text-ink">{title}</h1>
-          <p className="max-w-2xl text-body-large text-subtle">
-            {description}
-          </p>
+          <p className="max-w-2xl text-body-large text-subtle">{description}</p>
         </div>
         <div className="grid gap-3 text-sm text-subtle md:grid-cols-2">
           <div className="rounded-2xl bg-canvas p-4">

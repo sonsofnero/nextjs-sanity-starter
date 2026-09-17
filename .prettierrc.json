@@ -1,0 +1,17 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "bracketSpacing": false,
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": "site/sanity/sanity.types.ts",
+      "options": {
+        "semi": true,
+        "singleQuote": false,
+        "bracketSpacing": true,
+        "printWidth": 80
+      }
+    }
+  ]
+}

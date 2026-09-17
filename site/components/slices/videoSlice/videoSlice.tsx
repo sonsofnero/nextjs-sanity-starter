@@ -18,7 +18,10 @@ export function VideoSlice({
   const playbackId = stegaClean(video?.playbackId)
   if (!playbackId) return null
 
-  const {paddingTop, paddingBottom} = getModulePadding(padding_top, padding_bottom)
+  const {paddingTop, paddingBottom} = getModulePadding(
+    padding_top,
+    padding_bottom,
+  )
 
   return (
     <section className={clsx(paddingTop, paddingBottom)}>

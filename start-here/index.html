@@ -15,10 +15,13 @@
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Visual Setup Checklist</p>
-          <h1>Start here before turning this starter repo into a real project.</h1>
+          <h1>
+            Start here before turning this starter repo into a real project.
+          </h1>
           <p class="hero-body">
-            This guide explains the repo structure, the setup order, and the reusable toolkit for
-            the starter. Open this file directly in the browser. No app boot required.
+            This guide explains the repo structure, the setup order, and the
+            reusable toolkit for the starter. Open this file directly in the
+            browser. No app boot required.
           </p>
           <div class="hero-pills">
             <span>Next.js + Sanity Monorepo</span>
@@ -50,9 +53,10 @@
           <p class="eyebrow">Repo Map</p>
           <h2>How the starter is organized</h2>
           <p>
-            The extracted starter stays intentionally simple: one root workspace, one frontend app,
-            one Sanity Studio, one `start-here` folder for visual onboarding, and a small docs area
-            for repeatable workflow notes.
+            The extracted starter stays intentionally simple: one root
+            workspace, one frontend app, one Sanity Studio, one `start-here`
+            folder for visual onboarding, and a small docs area for repeatable
+            workflow notes.
           </p>
         </div>
 
@@ -61,7 +65,8 @@
             <p class="path-pill">/</p>
             <h3>Root workspace</h3>
             <p>
-              Runs the monorepo and keeps install, lint, type-check, and TypeGen commands aligned.
+              Runs the monorepo and keeps install, lint, type-check, and TypeGen
+              commands aligned.
             </p>
             <div class="tag-row">
               <span>`package.json`</span>
@@ -74,7 +79,8 @@
             <p class="path-pill">/site</p>
             <h3>Next.js app</h3>
             <p>
-              Keeps routes in app, shared UI in components, and data fetching in sanity. The @/* alias resolves from site/.
+              Keeps routes in app, shared UI in components, and data fetching in
+              sanity. The @/* alias resolves from site/.
             </p>
             <div class="tag-row">
               <span>`components`</span>
@@ -87,8 +93,8 @@
             <p class="path-pill">/sanity</p>
             <h3>Sanity Studio</h3>
             <p>
-              Defines schemas, the example page-builder module, desk structure, and TypeGen
-              config.
+              Defines schemas, the example page-builder module, desk structure,
+              and TypeGen config.
             </p>
             <div class="tag-row">
               <span>`src/schemaTypes`</span>
@@ -101,8 +107,9 @@
             <p class="path-pill">/start-here</p>
             <h3>Visual onboarding</h3>
             <p>
-              Gives the repo a lightweight setup artifact that can be opened directly in the browser
-              before the project is installed or running.
+              Gives the repo a lightweight setup artifact that can be opened
+              directly in the browser before the project is installed or
+              running.
             </p>
             <div class="tag-row">
               <span>`index.html`</span>
@@ -118,8 +125,9 @@
           <p class="eyebrow">Setup Checklist</p>
           <h2>What to do first</h2>
           <p>
-            Follow these in order. The goal is to get the starter running quickly, then customize
-            its foundations before deeper project work begins.
+            Follow these in order. The goal is to get the starter running
+            quickly, then customize its foundations before deeper project work
+            begins.
           </p>
         </div>
 
@@ -128,10 +136,15 @@
             <div class="step-index">01</div>
             <div class="step-copy">
               <h3>Install dependencies</h3>
-              <p>Install from the repo root so both workspaces use the same lockfile.</p>
+              <p>
+                Install from the repo root so both workspaces use the same
+                lockfile.
+              </p>
               <code>pnpm install</code>
               <ul>
-                <li>Run this once after moving the starter into its own folder.</li>
+                <li>
+                  Run this once after moving the starter into its own folder.
+                </li>
               </ul>
             </div>
           </article>
@@ -140,10 +153,19 @@
             <div class="step-index">02</div>
             <div class="step-copy">
               <h3>Create local env files</h3>
-              <p>Copy the example env files and replace the placeholders with the new project values.</p>
-              <code>cp site/.env.example site/.env.local &amp;&amp; cp sanity/.env.example sanity/.env</code>
+              <p>
+                Copy the example env files and replace the placeholders with the
+                new project values.
+              </p>
+              <code
+                >cp site/.env.example site/.env.local &amp;&amp; cp
+                sanity/.env.example sanity/.env</code
+              >
               <ul>
-                <li>Set the Sanity project ID, dataset, preview URL, read token, and revalidation secret.</li>
+                <li>
+                  Set the Sanity project ID, dataset, preview URL, read token,
+                  and revalidation secret.
+                </li>
               </ul>
             </div>
           </article>
@@ -152,10 +174,19 @@
             <div class="step-index">03</div>
             <div class="step-copy">
               <h3>Rename the project details</h3>
-              <p>Update the generic starter metadata before you begin modeling the new site.</p>
-              <code>site/app/layout.tsx  ·  sanity/sanity.config.ts  ·  site/styles/foundations.css</code>
+              <p>
+                Update the generic starter metadata before you begin modeling
+                the new site.
+              </p>
+              <code
+                >site/app/layout.tsx · sanity/sanity.config.ts ·
+                site/styles/foundations.css</code
+              >
               <ul>
-                <li>Set project titles and descriptions, then customize CSS theme tokens and typography.</li>
+                <li>
+                  Set project titles and descriptions, then customize CSS theme
+                  tokens and typography.
+                </li>
               </ul>
             </div>
           </article>
@@ -164,10 +195,16 @@
             <div class="step-index">04</div>
             <div class="step-copy">
               <h3>Start both apps</h3>
-              <p>Run the frontend and Studio together while you verify the copied foundation.</p>
-              <code>pnpm dev:site  ·  pnpm dev:sanity</code>
+              <p>
+                Run the frontend and Studio together while you verify the copied
+                foundation.
+              </p>
+              <code>pnpm dev:site · pnpm dev:sanity</code>
               <ul>
-                <li>Frontend defaults to `http://localhost:3000` and Studio to `http://localhost:3333`.</li>
+                <li>
+                  Frontend defaults to `http://localhost:3000` and Studio to
+                  `http://localhost:3333`.
+                </li>
               </ul>
             </div>
           </article>
@@ -176,10 +213,15 @@
             <div class="step-index">05</div>
             <div class="step-copy">
               <h3>Refresh generated types</h3>
-              <p>Whenever schemas or GROQ queries change, regenerate types immediately.</p>
+              <p>
+                Whenever schemas or GROQ queries change, regenerate types
+                immediately.
+              </p>
               <code>pnpm typegen &amp;&amp; pnpm type-check</code>
               <ul>
-                <li>This is the main guardrail against slice contract drift.</li>
+                <li>
+                  This is the main guardrail against slice contract drift.
+                </li>
               </ul>
             </div>
           </article>
@@ -192,17 +234,48 @@
             <p class="eyebrow">Project Foundations</p>
             <h2>What to customize next</h2>
             <p>
-              The baseline includes one typed slice and a reusable toolkit. Use these starting points
-              to adapt it to the next project.
+              The baseline includes one typed slice and a reusable toolkit. Use
+              these starting points to adapt it to the next project.
             </p>
           </div>
 
           <div class="task-stack">
-            <div class="task-card"><span>1</span><p>Keep future domain packs optional and outside the default content model so the base starter stays broadly reusable.</p></div>
-            <div class="task-card"><span>2</span><p>Customize site/styles/foundations.css for project fonts, colors, typography, and spacing.</p></div>
-            <div class="task-card"><span>3</span><p>Copy the example slice contract and import named toolkit components directly from site/components. Unused toolkit entrypoints are intentional.</p></div>
-            <div class="task-card"><span>4</span><p>Confirm Studio desk structure, singleton handling, and default documents still fit the next project.</p></div>
-            <div class="task-card"><span>5</span><p>Run pnpm test, pnpm test:browser, and pnpm check before handoff. Review analysis findings before deleting reusable code.</p></div>
+            <div class="task-card">
+              <span>1</span>
+              <p>
+                Keep future domain packs optional and outside the default
+                content model so the base starter stays broadly reusable.
+              </p>
+            </div>
+            <div class="task-card">
+              <span>2</span>
+              <p>
+                Customize site/styles/foundations.css for project fonts, colors,
+                typography, and spacing.
+              </p>
+            </div>
+            <div class="task-card">
+              <span>3</span>
+              <p>
+                Copy the example slice contract and import named toolkit
+                components directly from site/components. Unused toolkit
+                entrypoints are intentional.
+              </p>
+            </div>
+            <div class="task-card">
+              <span>4</span>
+              <p>
+                Confirm Studio desk structure, singleton handling, and default
+                documents still fit the next project.
+              </p>
+            </div>
+            <div class="task-card">
+              <span>5</span>
+              <p>
+                Run pnpm test, pnpm test:browser, and pnpm check before handoff.
+                Review analysis findings before deleting reusable code.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -210,10 +283,13 @@
           <p class="panel-label">Guardrail</p>
           <h3>Keep schema, query, and component changes in lockstep.</h3>
           <p>
-            Most drift in this stack happens when one part of the slice contract changes without the
-            other two. Keep the workflow explicit every time you touch a slice.
+            Most drift in this stack happens when one part of the slice contract
+            changes without the other two. Keep the workflow explicit every time
+            you touch a slice.
           </p>
-          <div class="flow-chip">schema → query → typegen → component → registry</div>
+          <div class="flow-chip">
+            schema → query → typegen → component → registry
+          </div>
         </aside>
       </section>
 
@@ -221,25 +297,37 @@
         <div class="section-heading">
           <p class="eyebrow">Reference Paths</p>
           <h2>Useful files to open next</h2>
-          <p>These are the fastest handoff points once the starter is installed and the env is in place.</p>
+          <p>
+            These are the fastest handoff points once the starter is installed
+            and the env is in place.
+          </p>
         </div>
 
         <div class="grid three-up">
           <article class="card">
             <h3>Slice workflow</h3>
-            <p>Create the schema, add the GROQ fragment, build the React component, then wire both registries.</p>
+            <p>
+              Create the schema, add the GROQ fragment, build the React
+              component, then wire both registries.
+            </p>
             <p class="file-ref">docs/how-to-add-a-slice.md</p>
           </article>
 
           <article class="card">
             <h3>TypeGen workflow</h3>
-            <p>Schema or query changed? Run TypeGen right away, then normalize nullable data at the boundary.</p>
+            <p>
+              Schema or query changed? Run TypeGen right away, then normalize
+              nullable data at the boundary.
+            </p>
             <p class="file-ref">docs/how-to-run-typegen.md</p>
           </article>
 
           <article class="card">
             <h3>Component toolkit</h3>
-            <p>Copy examples for CSS foundations, buttons, media, Portable Text, native accordions, and controlled modals.</p>
+            <p>
+              Copy examples for CSS foundations, buttons, media, Portable Text,
+              native accordions, and controlled modals.
+            </p>
             <p class="file-ref">docs/component-toolkit.md</p>
           </article>
         </div>

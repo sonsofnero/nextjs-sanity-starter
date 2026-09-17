@@ -13,9 +13,13 @@ async function seed() {
     const existing = await client.getDocument(document._id)
     await client.createIfNotExists(document)
     const created = !existing
-    console.log(`${created ? 'created' : 'exists '}  ${document._type}  ${document._id}`)
+    console.log(
+      `${created ? 'created' : 'exists '}  ${document._type}  ${document._id}`,
+    )
   }
-  console.log(`Seed finished for ${projectId}/${dataset}. Existing documents were left untouched.`)
+  console.log(
+    `Seed finished for ${projectId}/${dataset}. Existing documents were left untouched.`,
+  )
 }
 
 seed().catch((error) => {

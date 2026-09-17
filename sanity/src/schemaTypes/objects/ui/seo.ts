@@ -13,14 +13,18 @@ export const seoType = defineType({
       name: 'title',
       type: 'string',
       validation: (Rule) =>
-        Rule.max(50).warning('Longer titles may be truncated by search engines'),
+        Rule.max(50).warning(
+          'Longer titles may be truncated by search engines',
+        ),
     }),
     defineField({
       name: 'description',
       type: 'text',
       rows: 2,
       validation: (Rule) =>
-        Rule.max(150).warning('Longer descriptions may be truncated by search engines'),
+        Rule.max(150).warning(
+          'Longer descriptions may be truncated by search engines',
+        ),
     }),
     defineField({
       name: 'image',

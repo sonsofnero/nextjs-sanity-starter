@@ -83,15 +83,15 @@ Sanity's deploy command builds and hosts Studio; rerun it after Studio/schema ch
 - [ ] Import the new Git repository into the correct Vercel team.
 - [ ] Configure the project:
 
-| Setting | Value |
-| --- | --- |
-| Framework | Next.js |
-| Root Directory | `site` |
-| Node.js | 24.x |
-| Install Command | Automatic pnpm install |
-| Build Command | `pnpm build` (runs inside `site`) |
-| Output Directory | Next.js default |
-| Include files outside Root Directory | Enabled for workspace files |
+| Setting                              | Value                             |
+| ------------------------------------ | --------------------------------- |
+| Framework                            | Next.js                           |
+| Root Directory                       | `site`                            |
+| Node.js                              | 24.x                              |
+| Install Command                      | Automatic pnpm install            |
+| Build Command                        | `pnpm build` (runs inside `site`) |
+| Output Directory                     | Next.js default                   |
+| Include files outside Root Directory | Enabled for workspace files       |
 
 - [ ] Add these environment variables for Production and, if needed, trusted Preview deployments:
 

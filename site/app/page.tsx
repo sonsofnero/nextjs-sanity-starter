@@ -16,9 +16,15 @@ export async function generateMetadata(): Promise<Metadata> {
     sanityFetch({query: HOME_PAGE_QUERY, stega: false, tags: [SANITY_TAG]}),
     getSiteSettings(),
   ])
-  const {title, ...metadata} = buildMetadata({seo: page?.seo, settings, path: '/'})
+  const {title, ...metadata} = buildMetadata({
+    seo: page?.seo,
+    settings,
+    path: '/',
+  })
   // The home page shows its SEO title verbatim, or the layout's default (the site name).
-  return typeof title === 'string' ? {...metadata, title: {absolute: title}} : metadata
+  return typeof title === 'string'
+    ? {...metadata, title: {absolute: title}}
+    : metadata
 }
 
 export default async function HomePage() {

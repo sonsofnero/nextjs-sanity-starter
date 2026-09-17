@@ -12,7 +12,8 @@ export const siteSettingsType = defineType({
       name: 'siteName',
       title: 'Site name',
       type: 'string',
-      description: 'Used in browser titles ("Page | Site name") and share cards.',
+      description:
+        'Used in browser titles ("Page | Site name") and share cards.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -22,7 +23,9 @@ export const siteSettingsType = defineType({
       rows: 2,
       description: 'Used when a page has no SEO description.',
       validation: (Rule) =>
-        Rule.max(150).warning('Longer descriptions may be truncated by search engines'),
+        Rule.max(150).warning(
+          'Longer descriptions may be truncated by search engines',
+        ),
     }),
     defineField({
       name: 'image',

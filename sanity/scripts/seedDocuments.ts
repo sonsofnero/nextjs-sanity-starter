@@ -20,7 +20,8 @@ export const seedDocuments: SeedDocument[] = [
     _id: 'siteSettings',
     _type: 'siteSettings',
     siteName: 'Next.js Sanity Starter',
-    description: 'A neutral Next.js and Sanity starter with a typed page builder.',
+    description:
+      'A neutral Next.js and Sanity starter with a typed page builder.',
     noIndex: true,
   },
   {
@@ -35,7 +36,10 @@ export const seedDocuments: SeedDocument[] = [
         eyebrow: 'Example page',
         heading: 'A standard page built from slices.',
         content: [
-          paragraph('seed-page-p1', 'Edit this page in Sanity Studio or delete it.'),
+          paragraph(
+            'seed-page-p1',
+            'Edit this page in Sanity Studio or delete it.',
+          ),
         ],
         tone: 'muted',
         padding_top: '80',

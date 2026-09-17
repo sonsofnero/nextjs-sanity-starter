@@ -10,4 +10,3 @@ export const HOME_PAGE_QUERY = defineQuery(`
     seo
   }
 `)
-

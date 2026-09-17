@@ -30,7 +30,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const {slug} = await params
   const [{data: page}, settings] = await Promise.all([
-    sanityFetch({query: PAGE_QUERY, params: {slug}, stega: false, tags: [SANITY_TAG]}),
+    sanityFetch({
+      query: PAGE_QUERY,
+      params: {slug},
+      stega: false,
+      tags: [SANITY_TAG],
+    }),
     getSiteSettings(),
   ])
   if (!page) return {}

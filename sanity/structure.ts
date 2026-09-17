@@ -14,5 +14,7 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .title('Site Settings')
         .schemaType('siteSettings')
-        .child(S.editor().schemaType('siteSettings').documentId('siteSettings')),
+        .child(
+          S.editor().schemaType('siteSettings').documentId('siteSettings'),
+        ),
     ])

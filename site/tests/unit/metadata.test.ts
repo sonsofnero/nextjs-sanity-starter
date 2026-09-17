@@ -31,7 +31,12 @@ describe('buildMetadata', () => {
   })
 
   it('falls back to the document title and site defaults', () => {
-    const metadata = buildMetadata({seo: null, settings, fallbackTitle: 'Doc', path: '/x'})
+    const metadata = buildMetadata({
+      seo: null,
+      settings,
+      fallbackTitle: 'Doc',
+      path: '/x',
+    })
     expect(metadata.title).toBe('Doc')
     expect(metadata.description).toBe('Site description')
     expect(metadata.openGraph?.images).toHaveLength(1)
@@ -46,9 +51,15 @@ describe('buildMetadata', () => {
 
   it('noindexes when either the page or the site asks for it', () => {
     const noIndex = {index: false, follow: false}
-    expect(buildMetadata({seo: {noIndex: true}, settings, path: '/x'}).robots).toEqual(noIndex)
     expect(
-      buildMetadata({seo: null, settings: {...settings, noIndex: true}, path: '/x'}).robots,
+      buildMetadata({seo: {noIndex: true}, settings, path: '/x'}).robots,
+    ).toEqual(noIndex)
+    expect(
+      buildMetadata({
+        seo: null,
+        settings: {...settings, noIndex: true},
+        path: '/x',
+      }).robots,
     ).toEqual(noIndex)
   })
 })

@@ -40,7 +40,9 @@ it('compiles the real dispatcher after a second generated slice is registered', 
     },
     host,
   )
-  expect(program.getSourceFile(sliceTypes)?.text).toContain("_type: 'testSlice'")
+  expect(program.getSourceFile(sliceTypes)?.text).toContain(
+    "_type: 'testSlice'",
+  )
   const errors = ts
     .getPreEmitDiagnostics(program)
     .filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error)

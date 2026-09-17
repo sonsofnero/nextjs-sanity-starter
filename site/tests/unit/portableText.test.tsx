@@ -32,7 +32,11 @@ describe('portable text', () => {
   it('opens blank links in a new tab safely', () => {
     const html = renderToStaticMarkup(
       <PortableTextRenderer
-        value={linked({linkType: 'url', url: 'https://example.com', blank: true})}
+        value={linked({
+          linkType: 'url',
+          url: 'https://example.com',
+          blank: true,
+        })}
       />,
     )
     expect(html).toContain('href="https://example.com"')

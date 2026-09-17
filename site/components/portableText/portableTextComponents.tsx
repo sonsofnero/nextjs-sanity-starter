@@ -48,7 +48,11 @@ export const portableTextComponents: PortableTextComponents = {
         : {}
       if (href.startsWith('/')) {
         return (
-          <Link href={href} className="underline underline-offset-4" {...newTab}>
+          <Link
+            href={href}
+            className="underline underline-offset-4"
+            {...newTab}
+          >
             {children}
           </Link>
         )

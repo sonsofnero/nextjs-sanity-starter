@@ -37,4 +37,3 @@ export const paddingBottomField = defineField({
 })
 
 export const paddingFields = [paddingTopField, paddingBottomField]
-
