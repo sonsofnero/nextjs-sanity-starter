@@ -47,7 +47,7 @@ SANITY_STUDIO_DATASET=production
 SANITY_STUDIO_PREVIEW_URL=http://localhost:3000
 ```
 
-Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLIC_*` or `SANITY_STUDIO_*` variables. The copied files are gitignored. `SANITY_REVALIDATION_SECRET` is optional for the separate webhook endpoint; leave it blank unless configuring that integration. The starter already uses Sanity Live.
+Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLIC_*` or `SANITY_STUDIO_*` variables. The copied files are gitignored. `SANITY_REVALIDATION_SECRET` is optional. Sanity Live already refreshes content while a visitor has the page open; the webhook covers the case where nobody does. To enable it, generate a long random secret, set it in Vercel, and create a webhook in Sanity Manage (API → Webhooks) that POSTs to `https://your-domain/api/revalidate` on create, update, and delete with that secret.
 
 ## 4. Confirm the starter works locally
 

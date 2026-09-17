@@ -6,11 +6,14 @@ import {PageBuilder} from '@/components/slices/pageBuilder'
 import {client} from '@/sanity/client'
 import {sanityFetch} from '@/sanity/live'
 import {PAGE_QUERY, PAGE_SLUGS_QUERY} from '@/sanity/queries/pages/standardPage'
+import {SANITY_TAG} from '@/sanity/tags'
 
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const slugs = await client.withConfig({useCdn: false}).fetch(PAGE_SLUGS_QUERY)
+  const slugs = await client
+    .withConfig({useCdn: false})
+    .fetch(PAGE_SLUGS_QUERY, {}, {next: {tags: [SANITY_TAG]}})
 
   return (slugs ?? [])
     .filter((slug): slug is string => Boolean(slug))
@@ -23,7 +26,12 @@ export async function generateMetadata({
   params: Promise<{slug: string}>
 }): Promise<Metadata> {
   const {slug} = await params
-  const page = await client.fetch(PAGE_QUERY, {slug})
+  const {data: page} = await sanityFetch({
+    query: PAGE_QUERY,
+    params: {slug},
+    stega: false,
+    tags: [SANITY_TAG],
+  })
 
   return {
     title: page?.seo?.title || page?.title || 'Untitled Page',
@@ -40,6 +48,7 @@ export default async function ContentPage({
   const {data: page} = await sanityFetch({
     query: PAGE_QUERY,
     params: {slug},
+    tags: [SANITY_TAG],
   })
 
   if (!page) {

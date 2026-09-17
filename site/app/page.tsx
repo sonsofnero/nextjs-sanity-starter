@@ -2,12 +2,14 @@ import {EmptyPageState} from '@/components/starter/emptyPageState'
 import {PageBuilder} from '@/components/slices/pageBuilder'
 import {sanityFetch} from '@/sanity/live'
 import {HOME_PAGE_QUERY} from '@/sanity/queries/pages/home'
+import {SANITY_TAG} from '@/sanity/tags'
 
 export const revalidate = 60
 
 export default async function HomePage() {
   const {data: page} = await sanityFetch({
     query: HOME_PAGE_QUERY,
+    tags: [SANITY_TAG],
   })
 
   return (
