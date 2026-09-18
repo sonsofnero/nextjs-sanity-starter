@@ -4,7 +4,7 @@ A neutral Next.js + Sanity starter with a typed page builder and a reusable comp
 
 ## Getting started
 
-1. Install Node 24 and pnpm 11.12.0. With Corepack available, run `corepack enable`.
+1. Install Node 24 and pnpm 11.26.0. With Corepack available, run `corepack enable`.
 2. Run `pnpm install` from the project root.
 3. Copy `site/.env.example` to `site/.env.local` and `sanity/.env.example` to `sanity/.env`.
 4. Set the copied environment values, site name in `site/lib/site.ts` and Site Settings, and Sanity project configuration.

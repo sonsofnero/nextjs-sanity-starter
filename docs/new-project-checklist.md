@@ -6,7 +6,7 @@ Default setup: **website on Vercel, Studio hosted by Sanity**. Run commands from
 
 - [ ] Save the finished starter changes before copying or using it as a GitHub template; uncommitted changes are not included in a template or clone.
 - [ ] Create a new repository from the starter and clone it into a new folder.
-- [ ] Install Node 24 and enable Corepack with `corepack enable`. The repository pins pnpm 11.12.0.
+- [ ] Install Node 24 and enable Corepack with `corepack enable`. The repository pins pnpm 11.26.0.
 - [ ] Run `pnpm install`.
 
 Keep the workspace package names initially: root scripts refer to `starter-site` and `starter-sanity`.
