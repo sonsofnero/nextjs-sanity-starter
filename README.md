@@ -36,7 +36,6 @@ The retained toolkit includes buttons, Container, SanityImage, Video, MuxVideo, 
 GitHub Actions verifies that generated Sanity types are committed, then runs lint, the Prettier check, and TypeScript for both workspaces — all without Sanity credentials. Vercel builds the website during deployment; run `pnpm check` locally before handing off changes.
 
 - `pnpm check`: regenerate types, lint, check formatting, type-check, and build both workspaces.
-- `pnpm check:deps`: inspect unused dependency candidates with fallow.
 - `pnpm format`: format the repository with Prettier.
 
 ## Guides

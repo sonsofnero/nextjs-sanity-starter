@@ -122,4 +122,4 @@ Native dialog behavior contains focus while open. The wrapper restores the previ
 
 ## Intentional entrypoints
 
-The example homepage demonstrates the slice contract rather than every component. Toolkit modules remain deliberate direct-import entrypoints for new projects even if no current route imports them. An unused-code report is evidence for review, not authority to delete those modules.
+The example homepage demonstrates the slice contract rather than every component. Toolkit modules remain deliberate direct-import entrypoints for new projects even if no current route imports them. Do not delete them just because nothing imports them yet.
