@@ -3,8 +3,5 @@ node_modules
 .fallow
 
 .pnpm-store/
-site/test-results/
-site/playwright-report/
-.playwright-mcp/
 .superpowers/
 docs/superpowers/

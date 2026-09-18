@@ -51,6 +51,6 @@ Keep the slice server-rendered. Put event handlers and state in a focused client
 
 ## Verify
 
-Run `pnpm check`, then `pnpm test:browser` if interactions changed. Check the slice in Studio and on the page with empty and populated optional fields. Sanity results can be nullable even when a field has editor validation; normalize or guard data at the component boundary. Use `stegaClean` before interpreting decorated string values as class-map keys or other logic.
+Run `pnpm check`. Check the slice in Studio and on the page with empty and populated optional fields. Sanity results can be nullable even when a field has editor validation; normalize or guard data at the component boundary. Use `stegaClean` before interpreting decorated string values as class-map keys or other logic.
 
 For an insert-menu thumbnail, add `sanity/static/<sliceName>.png` and the type name to `SLICE_PREVIEWS` in `pageBuilder.ts`; without one the slice shows its icon.

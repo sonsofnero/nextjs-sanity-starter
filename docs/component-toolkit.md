@@ -120,8 +120,6 @@ export function Questions() {
 
 Native dialog behavior contains focus while open. The wrapper restores the previously focused connected element when appropriate on close and locks page scrolling while dialogs are open, releasing the lock after the last owner closes. Keep an accessible trigger and meaningful title. Use this focused client boundary inside otherwise server-rendered content.
 
-## Verification and intentional entrypoints
-
-Run `pnpm test` for unit/rendering checks and `pnpm test:browser` for actual browser interaction behavior. `pnpm check` also regenerates types, lints, type-checks, and builds both workspaces; browser tests are separate.
+## Intentional entrypoints
 
 The example homepage demonstrates the slice contract rather than every component. Toolkit modules remain deliberate direct-import entrypoints for new projects even if no current route imports them. An unused-code report is evidence for review, not authority to delete those modules.

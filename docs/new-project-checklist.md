@@ -54,7 +54,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 ## 4. Confirm the starter works locally
 
 - [ ] Run `pnpm dev:site` and `pnpm dev:sanity` in separate terminals.
-- [ ] Seed starter content: `SEED_CONFIRM_PROJECT_ID=your_project_id pnpm seed` (safe to re-run; never overwrites). Or create the Home Page and Site Settings by hand in Studio.
+- [ ] In Studio, open Home Page and Site Settings (both are created on first open), fill them in, and publish.
 - [ ] Open Site Settings in Studio, set the site name, and publish.
 - [ ] Add an Example Slice, fill it in, and publish.
 - [ ] Check the website at `http://localhost:3000`.
@@ -66,8 +66,7 @@ Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLI
 - [ ] Customize fonts and typography in `site/styles/typography.css`; customize colors, spacing, and radii in `site/styles/foundations.css`.
 - [ ] Build your first slice using [the slice checklist](how-to-add-a-slice.md).
 - [ ] Run `pnpm check`.
-- [ ] Install the browser once with `pnpm --filter starter-site exec playwright install chromium`, then run `pnpm test:browser`.
-- [ ] Commit and push the project, including the lockfile and generated Sanity types. GitHub Actions runs tests, lint, and TypeScript; no Sanity secrets or variables are needed in GitHub.
+- [ ] Commit and push the project, including the lockfile and generated Sanity types. GitHub Actions runs lint, formatting, and TypeScript checks; no Sanity secrets or variables are needed in GitHub.
 
 ## 6. Deploy Studio to Sanity
 

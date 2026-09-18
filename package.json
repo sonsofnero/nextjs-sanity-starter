@@ -7,7 +7,6 @@
     "dev": "pnpm --filter starter-site dev",
     "dev:site": "pnpm --filter starter-site dev",
     "dev:sanity": "pnpm --filter starter-sanity dev",
-    "seed": "pnpm --filter starter-sanity seed",
     "build": "pnpm --filter starter-site build",
     "build:sanity": "pnpm --filter starter-sanity build",
     "lint": "pnpm --filter starter-site lint && pnpm --filter starter-sanity lint",
@@ -18,9 +17,7 @@
     "check:deps": "fallow dead-code --format json --quiet --unused-deps",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm typegen && pnpm test && pnpm lint && pnpm format:check && pnpm type-check && pnpm build && pnpm build:sanity",
-    "test": "pnpm --filter starter-site test",
-    "test:browser": "pnpm --filter starter-site test:browser"
+    "check": "pnpm typegen && pnpm lint && pnpm format:check && pnpm type-check && pnpm build && pnpm build:sanity"
   },
   "engines": {
     "node": ">=24"

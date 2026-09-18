@@ -33,15 +33,11 @@ The retained toolkit includes buttons, Container, SanityImage, Video, MuxVideo, 
 
 ## Checks
 
-GitHub Actions verifies that generated Sanity types are committed, then runs unit tests, lint, the Prettier check, and TypeScript for both workspaces — all without Sanity credentials. Vercel builds the website during deployment; run `pnpm check` and `pnpm test:browser` locally before handing off changes.
+GitHub Actions verifies that generated Sanity types are committed, then runs lint, the Prettier check, and TypeScript for both workspaces — all without Sanity credentials. Vercel builds the website during deployment; run `pnpm check` locally before handing off changes.
 
-- `pnpm test`: focused unit and rendering checks.
-- `pnpm test:browser`: browser interaction checks for native disclosure and modal behavior.
-- `pnpm check`: regenerate types, run unit tests, lint, type-check, and build both workspaces.
+- `pnpm check`: regenerate types, lint, check formatting, type-check, and build both workspaces.
 - `pnpm check:deps`: inspect unused dependency candidates with fallow.
-- `pnpm seed`: create starter documents in the configured project (requires `SEED_CONFIRM_PROJECT_ID`).
-
-Run `pnpm check` and `pnpm test:browser` before handing off changes. Browser tests require Playwright's Chromium installation; run `pnpm --filter starter-site exec playwright install chromium` if needed.
+- `pnpm format`: format the repository with Prettier.
 
 ## Guides
 

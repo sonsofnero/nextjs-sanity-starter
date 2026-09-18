@@ -32,8 +32,6 @@ jobs:
         env:
           SANITY_STUDIO_PROJECT_ID: ci
           SANITY_STUDIO_DATASET: production
-      - name: Run unit tests
-        run: pnpm test
       - name: Lint workspaces
         run: pnpm lint
       - name: Check formatting

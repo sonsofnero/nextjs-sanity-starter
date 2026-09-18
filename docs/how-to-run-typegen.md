@@ -11,7 +11,7 @@ Run it whenever a schema, query fragment, or page-builder projection changes. Th
 1. Update schema registration and query projections together.
 2. Run `pnpm typegen`.
 3. Update components for the generated nullable output.
-4. Run `pnpm type-check`, or `pnpm check` for the complete unit-test, lint, type-check, and build pipeline.
+4. Run `pnpm type-check`, or `pnpm check` for the complete lint, type-check, and build pipeline.
 
 Import generated query types directly when needed:
 

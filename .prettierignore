@@ -4,8 +4,6 @@ site/sanity/sanity.types.ts
 site/next-env.d.ts
 **/.next
 **/dist
-**/playwright-report
-**/test-results
 .fallow
 .pnpm-store
 docs/superpowers
