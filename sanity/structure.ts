@@ -10,4 +10,11 @@ export const structure: StructureResolver = (S) =>
         .child(S.editor().schemaType('homePage').documentId('homePage')),
       S.divider(),
       S.documentTypeListItem('page').title('Pages'),
+      S.divider(),
+      S.listItem()
+        .title('Site Settings')
+        .schemaType('siteSettings')
+        .child(
+          S.editor().schemaType('siteSettings').documentId('siteSettings'),
+        ),
     ])

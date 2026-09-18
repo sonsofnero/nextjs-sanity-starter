@@ -41,6 +41,10 @@ export function ScrollReveal({
       })
 
       media.add('(prefers-reduced-motion: no-preference)', () => {
+        // Content already on screen at mount would flash if hidden now.
+        const rect = element.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) return
+
         gsap.fromTo(
           element,
           {autoAlpha: 0, y},

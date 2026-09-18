@@ -18,6 +18,7 @@ Keep the workspace package names initially: root scripts refer to `starter-site`
 - [ ] Copy the project ID.
 - [ ] Under the project's API settings, create a **Viewer** token for draft previews. Save it for `SANITY_API_READ_TOKEN`; do not use an Editor token. [Token setup](https://www.sanity.io/docs/nextjs/configure-sanity-client-nextjs).
 - [ ] Add CORS origins `http://localhost:3333` and `http://localhost:3000`, allowing credentials for Studio and authenticated preview. [CORS settings](https://www.sanity.io/docs/content-lake/cors).
+- [ ] If the project uses video: in the Studio, open any Video slice and enter Mux API credentials when the Mux plugin prompts. Skip otherwise; remove `videoSlice` and `sanity-plugin-mux-input` if the project never needs video.
 
 This repository already contains Studio. You do not need to scaffold another Studio with `sanity init`.
 
@@ -36,6 +37,7 @@ cp sanity/.env.example sanity/.env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SANITY_API_READ_TOKEN=your_viewer_token
 ```
 
@@ -47,24 +49,24 @@ SANITY_STUDIO_DATASET=production
 SANITY_STUDIO_PREVIEW_URL=http://localhost:3000
 ```
 
-Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLIC_*` or `SANITY_STUDIO_*` variables. The copied files are gitignored. `SANITY_REVALIDATION_SECRET` is optional for the separate webhook endpoint; leave it blank unless configuring that integration. The starter already uses Sanity Live.
+Keep tokens in the site's unprefixed environment variables, never in `NEXT_PUBLIC_*` or `SANITY_STUDIO_*` variables. The copied files are gitignored. `SANITY_REVALIDATION_SECRET` is optional. Sanity Live already refreshes content while a visitor has the page open; the webhook covers the case where nobody does. To enable it, generate a long random secret, set it in Vercel, and create a webhook in Sanity Manage (API → Webhooks) that POSTs to `https://your-domain/api/revalidate` on create, update, and delete with that secret.
 
 ## 4. Confirm the starter works locally
 
 - [ ] Run `pnpm dev:site` and `pnpm dev:sanity` in separate terminals.
-- [ ] Open Studio at `http://localhost:3333`, sign in, and create the Home Page.
+- [ ] In Studio, open Home Page and Site Settings (both are created on first open), fill them in, and publish.
+- [ ] Open Site Settings in Studio, set the site name, and publish.
 - [ ] Add an Example Slice, fill it in, and publish.
 - [ ] Check the website at `http://localhost:3000`.
 - [ ] Open Studio's Presentation tool. Change a draft and confirm the preview updates; confirm unpublished edits do not appear on the normal published website.
 
 ## 5. Make it your project
 
-- [ ] Update site metadata in `site/app/layout.tsx`, the favicon, and the title/logo in `sanity/sanity.config.ts`.
-- [ ] Customize fonts, colors, typography, spacing, and radii in `site/styles/foundations.css`.
+- [ ] Set the fallback site name in `site/lib/site.ts` and the real one in Studio → Site Settings, then update the favicon and the title/logo in `sanity/sanity.config.ts`.
+- [ ] Customize fonts and typography in `site/styles/typography.css`; customize colors, spacing, and radii in `site/styles/foundations.css`.
 - [ ] Build your first slice using [the slice checklist](how-to-add-a-slice.md).
 - [ ] Run `pnpm check`.
-- [ ] Install the browser once with `pnpm --filter starter-site exec playwright install chromium`, then run `pnpm test:browser`.
-- [ ] Commit and push the project, including the lockfile and generated Sanity types. GitHub Actions runs tests, lint, and TypeScript; no Sanity secrets or variables are needed in GitHub.
+- [ ] Commit and push the project, including the lockfile and generated Sanity types. GitHub Actions runs lint, formatting, and TypeScript checks; no Sanity secrets or variables are needed in GitHub.
 
 ## 6. Deploy Studio to Sanity
 
@@ -80,15 +82,15 @@ Sanity's deploy command builds and hosts Studio; rerun it after Studio/schema ch
 - [ ] Import the new Git repository into the correct Vercel team.
 - [ ] Configure the project:
 
-| Setting | Value |
-| --- | --- |
-| Framework | Next.js |
-| Root Directory | `site` |
-| Node.js | 24.x |
-| Install Command | Automatic pnpm install |
-| Build Command | `pnpm build` (runs inside `site`) |
-| Output Directory | Next.js default |
-| Include files outside Root Directory | Enabled for workspace files |
+| Setting                              | Value                             |
+| ------------------------------------ | --------------------------------- |
+| Framework                            | Next.js                           |
+| Root Directory                       | `site`                            |
+| Node.js                              | 24.x                              |
+| Install Command                      | Automatic pnpm install            |
+| Build Command                        | `pnpm build` (runs inside `site`) |
+| Output Directory                     | Next.js default                   |
+| Include files outside Root Directory | Enabled for workspace files       |
 
 - [ ] Add these environment variables for Production and, if needed, trusted Preview deployments:
 
@@ -97,6 +99,7 @@ ENABLE_EXPERIMENTAL_COREPACK=1
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_STUDIO_URL=https://your-project.sanity.studio
+NEXT_PUBLIC_SITE_URL=https://your-website-domain
 SANITY_API_READ_TOKEN=your_viewer_token
 ```
 
@@ -111,6 +114,9 @@ Vercel supports selecting a workspace as the [project root](https://vercel.com/d
 - [ ] Create `sanity/.env.production.local` with `SANITY_STUDIO_PREVIEW_URL=https://your-website-domain`. This keeps local Studio pointed at localhost while deployed Studio previews production.
 - [ ] Redeploy Studio with `pnpm --filter starter-sanity deploy`.
 - [ ] Confirm Vercel's `NEXT_PUBLIC_SANITY_STUDIO_URL` matches the deployed Studio; redeploy the website if you change its environment variables.
+- [ ] Before launch, turn off **Hide the entire site from search engines** in Site Settings.
+- [ ] Confirm `/robots.txt` allows indexing on the production domain and `/sitemap.xml` lists your pages.
+- [ ] Optional: create the revalidation webhook described in section 3.
 - [ ] Verify production pages, images, links, mobile layout, Studio login, draft preview, publishing, and exiting draft mode. If Vercel deployment protection blocks the preview iframe, configure access for the intended editors.
 - [ ] Invite the client/editors to the Sanity project with the appropriate roles and share the Studio URL.
 

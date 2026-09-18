@@ -1,4 +1,9 @@
-import {PADDING_FRAGMENT} from '../../fragments'
+import {
+  BUTTON_FRAGMENT,
+  IMAGE_FRAGMENT,
+  PADDING_FRAGMENT,
+  PORTABLE_TEXT_FRAGMENT,
+} from '../../fragments'
 
 export const EXAMPLE_SLICE_QUERY = `
   _type == 'exampleSlice' => {
@@ -6,7 +11,9 @@ export const EXAMPLE_SLICE_QUERY = `
     _key,
     eyebrow,
     heading,
-    body,
+    content[]{${PORTABLE_TEXT_FRAGMENT}},
+    image{${IMAGE_FRAGMENT}},
+    button{${BUTTON_FRAGMENT}},
     tone,
     ${PADDING_FRAGMENT}
   }

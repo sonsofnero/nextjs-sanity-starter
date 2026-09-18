@@ -1,5 +1,7 @@
 import {defineArrayMember, defineType} from 'sanity'
 
+import {linkFields} from '../objects/ui/linkFields'
+
 export const portableTextType = defineType({
   name: 'portableText',
   title: 'Portable Text',
@@ -26,10 +28,7 @@ export const portableTextType = defineType({
             name: 'link',
             title: 'Link',
             type: 'object',
-            fields: [
-              {name: 'href', title: 'URL', type: 'url'},
-              {name: 'blank', title: 'Open in new tab', type: 'boolean'},
-            ],
+            fields: linkFields,
           }),
         ],
       },

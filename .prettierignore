@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+sanity/schema.json
+site/sanity/sanity.types.ts
+site/next-env.d.ts
+**/.next
+**/dist
+.fallow
+.pnpm-store
+docs/superpowers

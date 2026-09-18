@@ -6,7 +6,7 @@ Keep the contract explicit: schema → GROQ projection → generated result type
 
 1. Create the schema in `sanity/src/schemaTypes/objects/modules/content`, following `exampleSlice.ts`. Reuse `paddingFields` when the slice needs editor-controlled section spacing.
 2. Register the schema in `sanity/src/schemaTypes/index.ts` and add it to the `of` array in `sanity/src/schemaTypes/objects/modules/pageBuilder.ts`.
-3. Create its query fragment in `site/sanity/queries/modules/content`. Include `_type`, `_key`, and the fields the component consumes.
+3. Create its query fragment in `site/sanity/queries/modules/content`. Include `_type`, `_key`, and the fields the component consumes. Reuse `LINK_FRAGMENT`, `BUTTON_FRAGMENT`, `IMAGE_FRAGMENT`, and `PORTABLE_TEXT_FRAGMENT` from `site/sanity/queries/fragments.ts`; `exampleSlice` uses all four.
 4. Import the fragment into `site/sanity/queries/pageBuilder.ts`. Update both the allowed `_type` filter and the projection; adding only the fragment will leave the new slice filtered out.
 5. Run `pnpm typegen` so the generated page-query result includes the new slice.
 
@@ -18,18 +18,27 @@ This copyable example uses the existing generated type:
 
 ```tsx
 import {Container} from '@/components/ui/container'
+import {PortableTextRenderer} from '@/components/portableText/portableTextRenderer'
 import {getModulePadding} from '@/components/slices/padding'
 import type {SliceProps} from '@/components/slices/sliceTypes'
 
-export function ExampleSlice({heading, body, padding_top, padding_bottom}: SliceProps<'exampleSlice'>) {
-  const {paddingTop, paddingBottom} = getModulePadding(padding_top, padding_bottom)
-  if (!heading && !body) return null
+export function ExampleSlice({
+  heading,
+  content,
+  padding_top,
+  padding_bottom,
+}: SliceProps<'exampleSlice'>) {
+  const {paddingTop, paddingBottom} = getModulePadding(
+    padding_top,
+    padding_bottom,
+  )
+  if (!heading && !content?.length) return null
 
   return (
     <section className={`${paddingTop} ${paddingBottom}`}>
       <Container gutter>
-        {heading && <h2 className="typography-heading-2">{heading}</h2>}
-        {body && <p className="typography-body-primary">{body}</p>}
+        {heading && <h2 className="text-heading-2">{heading}</h2>}
+        <PortableTextRenderer value={content} />
       </Container>
     </section>
   )
@@ -42,4 +51,6 @@ Keep the slice server-rendered. Put event handlers and state in a focused client
 
 ## Verify
 
-Run `pnpm check`, then `pnpm test:browser` if interactions changed. Check the slice in Studio and on the page with empty and populated optional fields. Sanity results can be nullable even when a field has editor validation; normalize or guard data at the component boundary. Use `stegaClean` before interpreting decorated string values as class-map keys or other logic.
+Run `pnpm check`. Check the slice in Studio and on the page with empty and populated optional fields. Sanity results can be nullable even when a field has editor validation; normalize or guard data at the component boundary. Use `stegaClean` before interpreting decorated string values as class-map keys or other logic.
+
+For an insert-menu thumbnail, add `sanity/static/<sliceName>.png` and the type name to `SLICE_PREVIEWS` in `pageBuilder.ts`; without one the slice shows its icon.

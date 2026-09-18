@@ -1,6 +1,10 @@
 import {defineField, defineType} from 'sanity'
 
-import {ComposeIcon, HomeIcon, SearchIcon} from '../../components/icons/SanityIcons'
+import {
+  ComposeIcon,
+  HomeIcon,
+  SearchIcon,
+} from '../../components/icons/SanityIcons'
 
 export const homePageType = defineType({
   name: 'homePage',

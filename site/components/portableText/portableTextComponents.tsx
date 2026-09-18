@@ -3,23 +3,24 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import {resolveLink} from '@/sanity/links'
+import {PortableTextImage} from './portableTextImage'
 
 export const portableTextComponents: PortableTextComponents = {
   block: {
     h1: ({children}) => (
-      <h1 className={clsx('typography-heading-1', 'mb-4')}>{children}</h1>
+      <h1 className={clsx('text-heading-1', 'mb-4')}>{children}</h1>
     ),
     h2: ({children}) => (
-      <h2 className={clsx('typography-heading-2', 'mb-4')}>{children}</h2>
+      <h2 className={clsx('text-heading-2', 'mb-4')}>{children}</h2>
     ),
     h3: ({children}) => (
-      <h3 className={clsx('typography-heading-3', 'mb-4')}>{children}</h3>
+      <h3 className={clsx('text-heading-3', 'mb-4')}>{children}</h3>
     ),
     normal: ({children}) => (
-      <p className={clsx('typography-body-primary', 'mb-6')}>{children}</p>
+      <p className={clsx('text-body-primary', 'mb-6')}>{children}</p>
     ),
     large: ({children}) => (
-      <p className={clsx('typography-body-large', 'mb-6')}>{children}</p>
+      <p className={clsx('text-body-large', 'mb-6')}>{children}</p>
     ),
     blockquote: ({children}) => (
       <blockquote className="mb-6 border-l-4 pl-4 italic">
@@ -35,19 +36,29 @@ export const portableTextComponents: PortableTextComponents = {
       <ol className="mb-6 list-decimal space-y-3 pl-6">{children}</ol>
     ),
   },
+  types: {
+    imageType: PortableTextImage,
+  },
   marks: {
     link: ({children, value}) => {
       const href = resolveLink(value)
       if (!href) return <>{children}</>
+      const newTab = value?.blank
+        ? {target: '_blank', rel: 'noopener noreferrer'}
+        : {}
       if (href.startsWith('/')) {
         return (
-          <Link href={href} className="underline underline-offset-4">
+          <Link
+            href={href}
+            className="underline underline-offset-4"
+            {...newTab}
+          >
             {children}
           </Link>
         )
       }
       return (
-        <a href={href} className="underline underline-offset-4">
+        <a href={href} className="underline underline-offset-4" {...newTab}>
           {children}
         </a>
       )

@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
-import {INTERNAL_PAGE_REFERENCE_TYPES} from '../../utils/internalPageReferenceTypes'
+import {linkFields} from './linkFields'
 
 export const buttonType = defineType({
   name: 'button',
@@ -13,33 +13,7 @@ export const buttonType = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: 'linkType',
-      title: 'Link Type',
-      type: 'string',
-      initialValue: 'internal',
-      options: {
-        layout: 'radio',
-        list: [
-          {title: 'Internal', value: 'internal'},
-          {title: 'URL', value: 'url'},
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'internalReference',
-      title: 'Internal Reference',
-      type: 'reference',
-      to: INTERNAL_PAGE_REFERENCE_TYPES,
-      hidden: ({parent}) => parent?.linkType !== 'internal',
-    }),
-    defineField({
-      name: 'url',
-      title: 'URL',
-      type: 'url',
-      hidden: ({parent}) => parent?.linkType !== 'url',
-    }),
+    ...linkFields,
     defineField({
       name: 'variant',
       title: 'Variant',

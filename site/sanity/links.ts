@@ -4,6 +4,7 @@ export type CmsLink = {
   href?: string | null
   linkType?: string | null
   url?: string | null
+  blank?: boolean | null
   internalReference?: {
     _type?: string | null
     slug?: string | {current?: string | null} | null

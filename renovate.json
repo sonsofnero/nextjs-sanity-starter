@@ -16,7 +16,16 @@
     },
     {
       "groupName": "Sanity",
-      "matchPackageNames": ["sanity", "next-sanity", "@sanity/**", "sanity-plugin-**"]
+      "matchPackageNames": [
+        "sanity",
+        "next-sanity",
+        "@sanity/**",
+        "sanity-plugin-**"
+      ]
+    },
+    {
+      "groupName": "Mux",
+      "matchPackageNames": ["@mux/**", "sanity-plugin-mux-input"]
     },
     {
       "groupName": "GSAP",
@@ -28,7 +37,12 @@
     },
     {
       "groupName": "TypeScript and ESLint",
-      "matchPackageNames": ["typescript", "eslint", "@types/**", "@sanity/eslint-config-studio"]
+      "matchPackageNames": [
+        "typescript",
+        "eslint",
+        "@types/**",
+        "@sanity/eslint-config-studio"
+      ]
     },
     {
       "groupName": "Portable Text",

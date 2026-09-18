@@ -1,7 +1,11 @@
 import {draftMode} from 'next/headers'
-import {NextRequest, NextResponse} from 'next/server'
+import {type NextRequest, NextResponse} from 'next/server'
 
 export async function GET(request: NextRequest) {
   ;(await draftMode()).disable()
-  return NextResponse.redirect(new URL('/', request.url))
+  const target = request.nextUrl.searchParams.get('redirect') ?? '/'
+  // Same-origin relative paths only; anything else goes home.
+  const safe =
+    target.startsWith('/') && !target.startsWith('//') && !target.includes('\\')
+  return NextResponse.redirect(new URL(safe ? target : '/', request.url))
 }

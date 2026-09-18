@@ -1,4 +1,4 @@
-import { defineLive } from "next-sanity/live";
+import {defineLive} from 'next-sanity/live'
 import {client} from './client'
 import {token} from './token'
 
@@ -14,4 +14,3 @@ export const {sanityFetch, SanityLive} = defineLive({
   // Required for stand-alone live previews, the token is only shared to the browser if it's a valid Next.js Draft Mode session
   browserToken: token,
 })
- 

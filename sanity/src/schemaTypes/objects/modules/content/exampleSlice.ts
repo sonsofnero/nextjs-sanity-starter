@@ -23,12 +23,19 @@ export const exampleSliceType = defineType({
       initialValue: 'Start here and replace this with your own content.',
     }),
     defineField({
-      name: 'body',
-      type: 'text',
-      title: 'Body',
-      rows: 4,
-      initialValue:
-        'This slice exists to show the path from schema to query to component. Duplicate its structure when you add your first real module.',
+      name: 'content',
+      type: 'portableText',
+      title: 'Content',
+    }),
+    defineField({
+      name: 'image',
+      type: 'imageType',
+      title: 'Image',
+    }),
+    defineField({
+      name: 'button',
+      type: 'button',
+      title: 'Button',
     }),
     defineField({
       name: 'tone',

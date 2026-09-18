@@ -6,12 +6,12 @@ Sanity TypeGen keeps GROQ result types aligned with the Studio schema.
 - `pnpm typegen:generate` generates `site/sanity/sanity.types.ts`.
 - `pnpm typegen` runs both steps in order.
 
-Run it whenever a schema, query fragment, or page-builder projection changes. The configuration lives in `sanity/sanity.cli.ts` and scans the frontend query files under `site/sanity`. Keep generated files committed; never hand-edit them.
+Run it whenever a schema, query fragment, or page-builder projection changes. The configuration lives in `sanity/sanity.cli.ts` and scans the frontend query files under `site/sanity`. Keep generated files committed; never hand-edit them. `sanity dev` and `sanity build` also regenerate the types; `formatGeneratedCode` in `sanity/sanity.cli.ts` keeps their output identical to `pnpm typegen`, so the Studio never leaves a formatting-only diff. TypeGen formats its output with the repository's Prettier config. `.prettierrc.json` carries an `overrides` entry for `site/sanity/sanity.types.ts` that keeps the generator's established style (semicolons, double quotes); `.prettierignore` separately stops `pnpm format` from touching the file. Both are needed — removing the override makes the next `pnpm typegen` rewrite the whole file and fails CI's drift check.
 
 1. Update schema registration and query projections together.
 2. Run `pnpm typegen`.
 3. Update components for the generated nullable output.
-4. Run `pnpm type-check`, or `pnpm check` for the complete unit-test, lint, type-check, and build pipeline.
+4. Run `pnpm type-check`, or `pnpm check` for the complete lint, type-check, and build pipeline.
 
 Import generated query types directly when needed:
 

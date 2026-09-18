@@ -33,7 +33,7 @@ export function PortableTextRenderer({
 }: PortableTextRendererProps) {
   if (!value) return null
   return (
-    <div className={clsx('portable-text-content text-stone-800', className)}>
+    <div className={clsx('portable-text-content text-ink', className)}>
       <PortableText value={value} components={mergeComponents(components)} />
     </div>
   )

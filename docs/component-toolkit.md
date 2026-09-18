@@ -4,7 +4,15 @@ Reusable frontend code lives under `site/components`; `site/app` holds routes an
 
 ## Styling foundations
 
-Customize `site/styles/foundations.css` first. Tailwind 4 reads its CSS `@theme` tokens and `@utility` declarations through `site/styles/globals.css`; no JavaScript theme configuration is needed. Tokens cover fonts, semantic colors, panel radius, and gutters. Typography utilities and explicit top/bottom section-padding utilities provide reusable responsive defaults.
+Customize `site/styles/foundations.css` for semantic colors, panel radius, gutters, and responsive section spacing. Customize `site/styles/typography.css` for font loading, body/heading font mappings, and responsive typography utilities. Tailwind 4 reads both files through `site/styles/globals.css`; no JavaScript theme configuration is needed.
+
+### Adding fonts
+
+In `typography.css`, use either the commented Google Fonts `@import` example or the local `@font-face` example. For local fonts, add your font files under `site/public/fonts/` and reference them as `/fonts/your-font.woff2`. Match the weight/range to the file and declare italic faces separately. For Google Fonts, place the uncommented import at the top before any rules; `globals.css` imports typography first so external font imports precede generated CSS.
+
+Set `--font-body` and `--font-heading` in that file to your loaded font family followed by the fallback stack. They can use the same family or different families. The body uses `--font-body`, and typography utilities use the corresponding font mapping. System fonts remain the default until you configure a font.
+
+Use `text-heading-1` through `text-heading-6`, `text-body-primary`, `text-blockquote-primary`, `text-blockquote-secondary`, and the other `text-*` utilities in that file. Headings step down from `text-heading-1` to `text-heading-6`; each is fluid between a mobile and a desktop clamp.
 
 ```css
 /* Edit the existing @theme block in site/styles/foundations.css. */
@@ -22,8 +30,8 @@ export function Introduction() {
   return (
     <section className="bg-canvas text-ink section-padding-top-80 section-padding-bottom-80">
       <Container gutter className="rounded-panel bg-surface p-6">
-        <h1 className="typography-heading-1">A new project</h1>
-        <p className="typography-body-primary">Start with the foundations.</p>
+        <h1 className="text-heading-1">A new project</h1>
+        <p className="text-body-primary">Start with the foundations.</p>
       </Container>
     </section>
   )
@@ -39,6 +47,7 @@ import {Button} from '@/components/ui/button'
 import {ButtonLink} from '@/components/ui/buttonLink'
 import {Container} from '@/components/ui/container'
 import {CategoryPill} from '@/components/ui/categoryPill'
+import {MuxVideo} from '@/components/media/muxVideo'
 import {SanityImage} from '@/components/media/sanityImage'
 import {Video} from '@/components/media/video'
 import {PortableTextRenderer} from '@/components/portableText/portableTextRenderer'
@@ -47,6 +56,7 @@ import {PortableTextRenderer} from '@/components/portableText/portableTextRender
 - `Button` renders a native button and defaults to `type="button"`. Set `type="submit"` for forms. `ButtonLink` renders Next.js `Link` for navigation. Both accept `variant="primary"`, `"secondary"`, or `"outline"`, plus native props and `className`.
 - `Container` renders a centered div. `size` is `content` (default), `header`, or `wide`. Gutters are opt-in with `gutter`, useful when a surrounding section does not already supply horizontal padding.
 - `CategoryPill` renders a span with a required `label`; it has no navigation or selection behavior.
+- `MuxVideo` is a client component wrapping Mux Player; pass `playbackId`, `title`, and the asset's `aspectRatio`. `videoSlice` is the reference. `Video` remains for self-hosted files.
 - `SanityImage` takes a Sanity `image` source and required `alt`. Missing or invalid images render nothing. It derives dimensions, honors crop/hotspot through the Sanity URL builder, and passes image props through to Next.js Image. Supply accurate `sizes`; `fill` requires a positioned parent with dimensions.
 - `Video` is a native video with controls enabled by default. Pass video props and track/source children as needed.
 - `PortableTextRenderer` accepts nullable `value`, `className`, and optional `components` overrides. Overrides merge with the existing block, list, mark, and custom-type mappings.
@@ -85,11 +95,18 @@ export function Questions() {
           <p>Install dependencies and configure your environment files.</p>
         </AccordionItem>
         <AccordionItem title="Where are the styles?">
-          <p>Edit site/styles/foundations.css.</p>
+          <p>
+            Edit site/styles/foundations.css and site/styles/typography.css.
+          </p>
         </AccordionItem>
       </Accordion>
       <Button onClick={() => setOpen(true)}>More information</Button>
-      <Modal open={open} onOpenChange={setOpen} title="More information" description="Project setup details">
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="More information"
+        description="Project setup details"
+      >
         <p>Use the README to work through setup.</p>
       </Modal>
     </>
@@ -103,8 +120,6 @@ export function Questions() {
 
 Native dialog behavior contains focus while open. The wrapper restores the previously focused connected element when appropriate on close and locks page scrolling while dialogs are open, releasing the lock after the last owner closes. Keep an accessible trigger and meaningful title. Use this focused client boundary inside otherwise server-rendered content.
 
-## Verification and intentional entrypoints
-
-Run `pnpm test` for unit/rendering checks and `pnpm test:browser` for actual browser interaction behavior. `pnpm check` also regenerates types, lints, type-checks, and builds both workspaces; browser tests are separate.
+## Intentional entrypoints
 
 The example homepage demonstrates the slice contract rather than every component. Toolkit modules remain deliberate direct-import entrypoints for new projects even if no current route imports them. An unused-code report is evidence for review, not authority to delete those modules.

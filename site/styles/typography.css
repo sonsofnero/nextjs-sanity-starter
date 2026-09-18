@@ -1,0 +1,209 @@
+/* Font setup: choose a source, then map its family in @theme below.
+ * Google Fonts: uncomment this import and keep it before all CSS rules.
+ * @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+ *
+ * Local fonts: put your file in site/public/fonts and uncomment/adapt:
+ * @font-face {
+ *   font-family: 'Project Sans';
+ *   src: url('/fonts/project-sans.woff2') format('woff2');
+ *   font-weight: 100 900;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ * Use the actual supported weight/range; add separate faces for italics.
+ * Set --font-body and --font-heading to 'Inter' or 'Project Sans', followed
+ * by the existing fallback stack. System fonts remain the default.
+ */
+
+@theme {
+  --font-body:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-heading:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+}
+
+@utility text-heading-1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.625rem, 7.8vw, 3.3125rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(3.3125rem, 5.3vw, 3.75rem);
+  }
+}
+
+@utility text-heading-2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 6vw, 2.75rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.75rem, 3.7vw, 3.25rem);
+  }
+}
+
+@utility text-heading-3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 5vw, 2.25rem);
+  line-height: 110%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.25rem, 3vw, 2.625rem);
+  }
+}
+
+@utility text-heading-4 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 4.4vw, 1.875rem);
+  line-height: 110%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.875rem, 2.5vw, 2.25rem);
+  }
+}
+
+@utility text-heading-5 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 3.8vw, 1.625rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.625rem, 2.1vw, 1.875rem);
+  }
+}
+
+@utility text-heading-6 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3.4vw, 1.375rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.375rem, 1.8vw, 1.5rem);
+  }
+}
+
+@utility text-body-large {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2.6vw, 1.25rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
+  }
+}
+
+@utility text-body-primary {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+  }
+}
+
+@utility text-body-secondary {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 2.1vw, 1rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility text-body-tertiary {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 150%;
+}
+
+@utility text-body-tiny {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 140%;
+}
+
+@utility text-blockquote-primary {
+  font-family: var(--font-body);
+  font-size: clamp(1.625rem, 3.8vw, 1.8125rem);
+  line-height: 130%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.8125rem, 2.6vw, 2.0625rem);
+  }
+}
+
+@utility text-blockquote-secondary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 2.3vw, 1.625rem);
+  }
+}
+
+@utility text-title-display {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3125rem, 6.9vw, 2.5rem);
+  line-height: 105%;
+  @media (width >= 48rem) {
+    font-size: clamp(2.5rem, 4.7vw, 2.9375rem);
+  }
+}
+
+@utility text-title-primary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.4375rem, 3.4vw, 1.625rem);
+  line-height: 130%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.625rem, 2.3vw, 1.8125rem);
+  }
+}
+
+@utility text-title-secondary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 2.6vw, 1.25rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
+  }
+}
+
+@utility text-title-tertiary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.3vw, 1.125rem);
+  line-height: 120%;
+  @media (width >= 48rem) {
+    font-size: clamp(1.125rem, 1.6vw, 1.25rem);
+  }
+}
+
+@utility text-title-quaternary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.625rem;
+  line-height: 140%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@utility text-navigation-primary {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 2.1vw, 1rem);
+  line-height: 150%;
+  @media (width >= 48rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility text-buttons-primary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+@utility text-eyebrow {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}

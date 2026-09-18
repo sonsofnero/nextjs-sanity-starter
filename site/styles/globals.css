@@ -1,3 +1,4 @@
+@import './typography.css';
 @import 'tailwindcss';
 @import './foundations.css';
 @source "../components";

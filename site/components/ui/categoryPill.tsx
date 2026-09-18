@@ -10,7 +10,7 @@ export function CategoryPill({label, className, ...props}: CategoryPillProps) {
   return (
     <span
       className={clsx(
-        'typography-title-quaternary inline-flex rounded-full bg-muted px-3 py-1 text-action-hover',
+        'text-title-quaternary inline-flex rounded-full bg-muted px-3 py-1 text-action-hover',
         className,
       )}
       {...props}

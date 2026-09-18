@@ -16,4 +16,3 @@ export const PAGE_QUERY = defineQuery(`
 export const PAGE_SLUGS_QUERY = defineQuery(`
   *[_type == "page" && defined(slug.current)][].slug.current
 `)
-

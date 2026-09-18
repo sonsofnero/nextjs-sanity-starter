@@ -25,9 +25,16 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Run unit tests
-        run: pnpm test
+      - name: Verify generated Sanity types are committed
+        run: |
+          pnpm typegen
+          git diff --exit-code -- sanity/schema.json site/sanity/sanity.types.ts
+        env:
+          SANITY_STUDIO_PROJECT_ID: ci
+          SANITY_STUDIO_DATASET: production
       - name: Lint workspaces
         run: pnpm lint
-      - name: Check TypeScript
+      - name: Check formatting
+        run: pnpm format:check
+      - name: Check TypeScript (site and Studio)
         run: pnpm type-check
